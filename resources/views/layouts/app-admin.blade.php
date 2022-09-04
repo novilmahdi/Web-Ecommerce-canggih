@@ -9,9 +9,7 @@
     <!-- endinject -->
     <!-- vendor css for this page -->
     <!-- End vendor css for this page -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets2/css/shared/style.css') }}">
@@ -25,7 +23,7 @@
     
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
     
     {{-- asset reset modal add post --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -37,6 +35,11 @@
     {{-- Toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- --- --}}
+
+
+    {{-- tailwinds --}}
+
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     @livewireStyles
 
@@ -354,6 +357,32 @@
   // ----------//
 
   </script>
+
+  <script>
+
+      window.livewire.on('fileUploaded', ()=>{
+        $('#form-upload')[0].reset();
+      });
+
+      window.livewire.on('imagesUploaded', ()=>{
+        $('#upload-images')[0].reset();
+      });
+
+  </script>
+  
+  <script type="text/javascript">
+    // <script>
+  var closebtns = document.getElementsByClassName("close");
+  var i;
+  
+  for (i = 0; i < closebtns.length; i++) {
+    closebtns[i].addEventListener("click", function() {
+      this.parentElement.style.display = 'none';
+    });
+  }
+  </script>
+
+
 {{-- 
 <script>
 

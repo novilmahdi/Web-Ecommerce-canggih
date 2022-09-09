@@ -8409,6 +8409,11 @@ textarea {
   button.btn.btn-danger.btn-xs{
     box-shadow: -2px 7px 8px 0px rgb(255 7 7 / 38%);
   }
+
+  
+  a.btn.btn-primary.btn-xs {
+    box-shadow:-2px 7px 8px 0px rgb(0 132 255 / 68%);
+  }
   
 .btn {
   display: inline-flex;

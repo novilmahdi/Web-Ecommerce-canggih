@@ -9,18 +9,20 @@ use Livewire\Component;
 class EditSepatu extends Component
 {
     public $products = [];
-    public $title;
+    public $image_preview, $nama_barang, $harga, $berat, $ukuran, $jenis_barang, $gender, 
+           $deskripsi, $stock_barang, $like;    
     public $userIdBeingRemoved = null;
 
-    public function mount()
-    {
+    // public function mount()
+    // {
     
-        $this->products = Product::latest()->get();
+    //     $this->products = Product::latest()->get();
       
-    }
+    // }
 
     public function render()
-    {
+    {   
+        $this->products = Product::latest()->get();
         return view('livewire.admin.edit-sepatu')->extends('layouts.app-admin')->section('content');
     }
 
@@ -38,9 +40,11 @@ class EditSepatu extends Component
         $data = Product::findOrFail($this->userIdBeingRemoved);
         if($data)
         {
-            Storage::delete('/uploads/all'.$data->imagroduct_unique_id);
+            // Storage::delete($data->id);
+           
             $data->delete();
             $this->dispatchBrowserEvent('show-close-delete-modal', 'success');
+            $this->emit('delete');
             
         }
     }

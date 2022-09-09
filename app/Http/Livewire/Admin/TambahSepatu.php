@@ -14,7 +14,9 @@ class TambahSepatu extends Component
     
     use WithFileUploads;
     
-    public $title, $images = [];
+
+    public $images_preview, $images, $nama_barang, $harga, $berat, $ukuran,
+           $jenis_barang, $gender,  $deskripsi, $stock_barang, $like =  [];    
 
     public function render()
     {
@@ -25,22 +27,35 @@ class TambahSepatu extends Component
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'title' => 'required',
+            'nama_barang' => 'required',
             'images' => 'required',
+            'images_preview' => 'required',
         ]);
     }
 
     public function storeProduct()
     {
         $this->validate([
-            'title' => 'required',
+            'nama_barang' => 'required',
             'images' => 'required',
+            'images_preview' => 'required',
         ]);
 
         
-
+    
+        $imageNamePreview = $this->images_preview->store('all');
+      
+        
         $product = new Product();
-        $product->title = $this->title;
+        $product->image_preview = $imageNamePreview;
+        $product->nama_barang = $this->nama_barang;
+        $product->harga = $this->harga;
+        $product->berat = $this->berat;
+        $product->ukuran = $this->ukuran;
+        $product->jenis_barang = $this->jenis_barang;
+        $product->gender = $this->gender;
+        $product->deskripsi = $this->deskripsi;
+        $product->stock_barang = $this->stock_barang;
         $product->save();
 
         foreach($this->images as $key => $image) {
@@ -53,28 +68,23 @@ class TambahSepatu extends Component
             $pimage->image = $imageName;
             $pimage->save();
         }
-
-        $product->save();
+        
         session()->flash('message', 'Product berhasil');
-
-        $this->title = null;
+        $this->dispatchBrowserEvent('showModalSuccess');
+        
+        $this->images_preview = null;
         $this->images = null;
+        
+        $this->nama_barang = null;
+        $this->harga = null;
+        $this->berat = null;
+        $this->ukuran = null;
+        $this->jenis_barang = null;
+        $this->gender = null;
+        $this->stock_barang = null;
+        $this->deskripsi = null;
+       
     }
  
-    // public function uploadImages()
-    // {
-    //     // $this->validate([
-    //     //     'photos.*' => 'image|max:1024', // 1MB Max
-    //     // ]);
- 
-    //     foreach($this->images as $key=>$image)
-    //     {
 
-    //         $this->images[$key] = $image->store('images', 'public');
-    //     }
-    //     $this->images = json_encode($this->images);
-    //     image::create(['filename' => $this->images]);
-    //     session()->flash('message', 'Berhasil');
-    //     $this->emit('imagesUploaded');
-    // }
 }

@@ -358,6 +358,7 @@
 
   </script>
 
+
   <script>
 
       window.livewire.on('fileUploaded', ()=>{

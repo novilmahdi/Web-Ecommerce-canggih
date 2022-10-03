@@ -48,10 +48,10 @@
                   @endif --}}
                   
                   <div wire:ignore>
-                  {{-- @foreach ($product2 as $testP) --}}
+                  @foreach ($ProductImagesPreview as $testP)
                       
-                    <img class="w-32 h-32 p-2 rounded-lg" id="preview_img" src="{{ asset("uploads/".$images_preview) }}">
-                    {{-- @endforeach --}}
+                    <img class="w-32 h-32 p-2 rounded-lg" id="preview_img" src="{{ asset("uploads/".$testP->image_preview) }}">
+                    @endforeach
                     
                   </div>
                     </div>
@@ -64,20 +64,23 @@
                   <div class="col-md-9 showcase_content_area">
                     <div class="custom-file">
                       <input id="fileId" type="file" wire:model="images" onchange="loadPreview2(this);" style="padding: 3px; font-size: 12px;" class="form-control" id="exampleInputFile" multiple>
-                    @error('images')<span class="text-danger">{{ $message }}</span> @enderror                 
+                      @error('images')<span class="text-danger">{{ $message }}</span> @enderror                 
                     </div>
                   </div>
                 </div>
-
+                
                 <div class="form-group row showcase_row_area">
                   <div class="col-md-3 showcase_text_area">
                     <label> </label>
                   </div>
                   <div class="col-md-9 showcase_content_area">
                     <div wire:loading wire:target="images">
-                        <div class="loader"></div>
-                     </div>
-                 
+                      <div class="loader"></div>
+                    </div>
+                    
+                    @if(session()->has('message'))
+                    <div class="alert alert-success text-center">{{ session('message') }}</div>
+                    @endif
 
                      <div class="flex bg-blue-200 p-4 rounded-lg">
                           {{-- @if ($images_preview)
@@ -89,8 +92,9 @@
                     @foreach ($ProductImages as $image )
                     
                     {{-- <div wire:ignore> --}}
-                    <a href="#" wire:click.prevent="deleteImage({{ $image->id }})"><i class="fa fa-times text-danger mr-2"></i></a>
+                    <a href="#" wire:click.prevent="deleteImage({{ $image->id }})"> <i class="fa fa-times text-danger mr-2"></i>
                       <img class="w-32 h-32 p-2 rounded-lg" id="preview_img2" src="{{ asset('uploads/all') }}/{{ $image->image }}">
+                      </a>
                     {{-- </div> --}}
                       @endforeach
                      

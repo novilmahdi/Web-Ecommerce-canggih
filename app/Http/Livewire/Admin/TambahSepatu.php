@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductImagePreview;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -42,12 +43,13 @@ class TambahSepatu extends Component
         ]);
 
         
-    
+        
+        // $imageNamePreview = ProductImagePreview::where('id', $id)->first();
         $imageNamePreview = $this->images_preview->store('all');
-      
+        
         
         $product = new Product();
-        $product->image_preview = $imageNamePreview;
+        $product->image_p = $imageNamePreview;
         $product->nama_barang = $this->nama_barang;
         $product->harga = $this->harga;
         $product->berat = $this->berat;
@@ -58,6 +60,15 @@ class TambahSepatu extends Component
         $product->stock_barang = $this->stock_barang;
         $product->save();
 
+        
+        $product_image_preview = new ProductImagePreview();
+        $product_image_preview->product_id = $product->id;
+        
+        $product_image_preview->image_preview = $product->image_p;
+        $product_image_preview->save();
+        
+
+        
         foreach($this->images as $key => $image) {
             $pimage = new ProductImage();
             $pimage->product_id = $product->id;

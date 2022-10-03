@@ -77,7 +77,13 @@
                       
                         <tr>
                           <td>
-                             <img class="profile-img img-sm img-rounded mr-2" src="{{ asset('uploads/'.$product->image_preview) }}"  class="img-fluid" alt="flag">
+                            @php
+                            $ProductImagesPreview = App\Models\ProductImagePreview::where('product_id',
+                            $product->id)->get(); 
+                            @endphp
+                            @foreach ($ProductImagesPreview as $itemProductImagesPreview )
+                           <img class="profile-img img-sm img-rounded mr-2" src="{{ asset('uploads/') }}/{{ $itemProductImagesPreview->image_preview }}"  class="img-fluid" alt="flag">
+                            @endforeach
                           </td>
                           <td>
                               @php

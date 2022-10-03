@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
+use App\Models\ProductImagePreview;
+use App\Models\ProductImage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
@@ -13,12 +16,6 @@ class EditSepatu extends Component
            $deskripsi, $stock_barang, $like;    
     public $userIdBeingRemoved = null;
 
-    // public function mount()
-    // {
-    
-    //     $this->products = Product::latest()->get();
-      
-    // }
 
     public function render()
     {   
@@ -38,15 +35,30 @@ class EditSepatu extends Component
     public function deleteData()
     {
         $data = Product::findOrFail($this->userIdBeingRemoved);
+        $ProductImagesP = ProductImage::where('product_id', $this->userIdBeingRemoved)->get();
+
+        // Hapus Gambar banyak /multiple 
+        foreach($ProductImagesP as $ProductImagesPs)
+        {
+            $this->ProductImagesP_delete = $ProductImagesPs;
+            $image_name = $ProductImagesPs->image;
+
+            unlink(public_path('uploads/all/'. $image_name));
+                $this->ProductImagesP_delete->delete();
+               
+            }
+        //End
+
+        // Hapus sederhana
         if($data)
         {
-            // Storage::delete($data->id);
-           
+            File::delete('uploads/'.$data->image_p);
             $data->delete();
-            $this->dispatchBrowserEvent('show-close-delete-modal', 'success');
-            $this->emit('delete');
-            
         }
+
+        $this->dispatchBrowserEvent('show-close-delete-modal', 'success');
+        $this->emit('delete');
+        //End
     }
 
 

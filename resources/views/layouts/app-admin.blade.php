@@ -283,7 +283,7 @@
   window.addEventListener('ShowcloseModal', event => {
       $("#modalForm").modal('hide');
       toastr.options.positionClass = 'toast-bottom-right';
-    toastr.success(event.detail.message, 'Update success!');
+    toastr.success(event.detail.message, 'Update berhasil!');
       $('#modalForm').on('hidden.bs.modal', function (e) {
    $(this)
       .find("input,textarea,select")
@@ -300,7 +300,7 @@
   window.addEventListener('showModalSuccess', event => {
       $("#modalForm").modal('hide');
     toastr.options.positionClass = 'toast-bottom-right';
-    toastr.success(event.detail.message, 'Upload success!');
+    toastr.success(event.detail.message, 'Upload berhasil!');
       $('#modalForm').on('hidden.bs.modal', function (e) {
    $(this)
       .find("input,textarea,select")
@@ -310,7 +310,7 @@
             .prop("checked", "")
                .end();    
                   })
-                  swal("Upload Berhasil", "Silahkan tekan OK!", "success");
+                  swal("Upload berhasil", "Silahkan tekan OK!", "success");
 
   })
 
@@ -339,7 +339,7 @@
   window.addEventListener('show-close-delete-modal', event => {
       $("#confirmationModal").modal('hide');
       toastr.options.positionClass = 'toast-bottom-right';
-    toastr.success(event.detail.message, 'Update success!');
+    toastr.success(event.detail.message, 'Berhasil dihapus!');
       $('#confirmationModal').on('hidden.bs.modal', function (e) {
    $(this)
       .find("input,textarea,select")
@@ -349,7 +349,7 @@
             .prop("checked", "")
                .end();    
                   })
-                  swal("Delete Berhasil", "Silahkan tekan OK!", "success");
+                  swal("Berhasil dihapus", "Silahkan tekan OK!", "success");
 
   })
 

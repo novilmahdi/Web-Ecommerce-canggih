@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductImagePreview;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,17 +18,15 @@ class EditSepatuProduct extends Component
     public $nama_barang, $images, $images_preview, $harga, $berat, $ukuran,
            $jenis_barang, $gender, $deskripsi, $stock_barang = [];
     public $product_id;
-    public $product, $product2 = [];
+    // public $product = [];
   
 
     public function mount($id)
     {
-        $product = Product::where('id', $id)->first();
-
+            $product = Product::where('id', $id)->first();
       
             $this->product_id = $product->id;
             $this->nama_barang = $product->nama_barang;
-            $this->images_preview = $product->image_preview;
             $this->harga = $product->harga;
             $this->berat = $product->berat;
             $this->ukuran = $product->ukuran;
@@ -34,7 +34,6 @@ class EditSepatuProduct extends Component
             $this->gender = $product->gender;
             $this->deskripsi = $product->deskripsi;
             $this->stock_barang = $product->stock_barang;
-  
       
     }
 
@@ -43,11 +42,10 @@ class EditSepatuProduct extends Component
     public function render()
     {
       
-        
-
         $ProductImages = ProductImage::where('product_id', $this->product_id)->get();
+        $ProductImagesPreview = ProductImagePreview::where('product_id', $this->product_id)->get();
 
-        return view('livewire.admin.edit-sepatu-product', ['ProductImages' => $ProductImages])->extends('layouts.app-admin')->section('content');
+        return view('livewire.admin.edit-sepatu-product', ['ProductImages' => $ProductImages], ['ProductImagesPreview' => $ProductImagesPreview])->extends('layouts.app-admin')->section('content');
         
     }
 
@@ -57,7 +55,7 @@ class EditSepatuProduct extends Component
      
             $this->validateOnly($fields, [
                 'nama_barang' => 'required',
-                'images_preview' => 'file|max:7000',
+                // 'images_preview' => 'file|max:7000',
                 'harga' => 'required|integer',
                 'berat' => 'required|integer',
                 'ukuran' => 'required|integer',
@@ -71,11 +69,13 @@ class EditSepatuProduct extends Component
 
     public function updateProduct()
     {
-        if($this->images_preview != '')
-        {
+        
+        // Jika Gambar Input Images_Preview, maka update Gambar
+         if($this->images_preview)
+          {
             $this->validate([
                 'nama_barang' => 'required',
-                'images_preview' => 'file|max:7000',
+                // 'image_p' => 'file|max:7000',
                 'harga' => 'required|integer',
                 'berat' => 'required|integer',
                 'ukuran' => 'required|integer',
@@ -85,22 +85,22 @@ class EditSepatuProduct extends Component
                 'stock_barang' => 'required|integer',
                 
             ]);
-    
-            // $imageNamePreview = md5($this->images_preview . microtime()).'.'.$this->images_preview->extension();
-            // Storage::disk('public')->putFileAs('photos', $this->images_preview,$imageNamePreview);
-
+            
 
             $imageNamePreview = $this->images_preview->store('all');
-    
+            
+            // Pengecekan dana mengahpus foto lama dari storage
+            $data = Product::find($this->product_id);
+            if($this->product_id)
+             {
+              File::delete('uploads/'.$data->image_p);
+             }
+            // End 
+        
+           // Update Tabel Product
             $product = Product::where('id', $this->product_id)->first();
-    
-            // if($product)
-            // {
-            //     Storage::delete("all/".$product->image);
-            // }
-    
+            $product->image_p = $imageNamePreview;
             $product->nama_barang = $this->nama_barang;
-            $product->image_preview = $imageNamePreview;
             $product->harga = $this->harga; 
             $product->berat =  $this->berat;  
             $product->ukuran = $this->ukuran; 
@@ -109,10 +109,20 @@ class EditSepatuProduct extends Component
             $product->deskripsi = $this->deskripsi;
             $product->stock_barang = $this->stock_barang;
             $product->save();
-    
-         if($this->images != '')
-         {
-            foreach($this->images as $key => $image) {
+            // End
+            
+            
+            //Update Tabel Gambar preview
+            $ProductImagesP = ProductImagePreview::where('product_id', $this->product_id)->first();
+            $ProductImagesP->image_preview = $product->image_p;
+            $ProductImagesP->save();
+            // end
+
+
+            // Update Tabel Gambar Multiple
+            if($this->images != '')
+              {
+                foreach($this->images as $key => $image) {
                 $pimage = new ProductImage();
                 $pimage->product_id = $product->id;
     
@@ -121,23 +131,20 @@ class EditSepatuProduct extends Component
     
                 $pimage->image = $imageName;
                 $pimage->save();
-           
-    
-            $product->save();
-            }   
-            
-        }
-        
-     
-        $this->dispatchBrowserEvent('showModalSuccess');
-        }
 
-        else
+                 }   
+               }
+            // End   
+                
+               $this->images = '';     
+               $this->dispatchBrowserEvent('ShowcloseModal');
+              }
 
-        {
+         // Maka jika tidak ada inputan Images_Preview, tidak melakukan update gambar  
+         else
+             {
             $this->validate([
                 'nama_barang' => 'required',
-                // 'images_preview' => 'file|max:7000',
                 'harga' => 'required|integer',
                 'berat' => 'required|integer',
                 'ukuran' => 'required|integer',
@@ -148,18 +155,9 @@ class EditSepatuProduct extends Component
                 
             ]);
     
-            
-            // $imageNamePreview = $this->images_preview->store('all');
-    
+            // Update Tabel Product
             $product = Product::where('id', $this->product_id)->first();
-    
-            // if($product)
-            // {
-            //     Storage::delete("all/".$product->image);
-            // }
-    
             $product->nama_barang = $this->nama_barang;
-            // $product->image_preview = $imageNamePreview;
             $product->harga = $this->harga; 
             $product->berat =  $this->berat;  
             $product->ukuran = $this->ukuran; 
@@ -168,31 +166,32 @@ class EditSepatuProduct extends Component
             $product->deskripsi = $this->deskripsi;
             $product->stock_barang = $this->stock_barang;
             $product->save();
+            // End
+
+
     
-         if($this->images != '')
-         {
-            foreach($this->images as $key => $image) {
-                $pimage = new ProductImage();
-                $pimage->product_id = $product->id;
+             // Update Tabel Gambar Multiple
+              if($this->images != '')
+                {
+                  foreach($this->images as $key => $image) {
+                  $pimage = new ProductImage();
+                  $pimage->product_id = $product->id;
     
-                $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
-                $this->images[$key]->storeAs('all', $imageName);
+                   $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
+                   $this->images[$key]->storeAs('all', $imageName);
     
-                $pimage->image = $imageName;
-                $pimage->save();
+                   $pimage->image = $imageName;
+                   $pimage->save();
            
+                     }   
+                 }
+                 $this->images = '';
+                 $this->dispatchBrowserEvent('ShowcloseModal');
+              }
     
-            $product->save();
-            }   
-            
-        }
-        
-     
-        $this->dispatchBrowserEvent('showModalSuccess');
-        }
-        
-    
-    }
+     }
+
+
 
     public function deleteImage($id)
     {
@@ -201,18 +200,4 @@ class EditSepatuProduct extends Component
         session()->flash('message', 'Gambar berhasil dihapus');
     }
 
-    public function resetfields()
-    {
-        $this->images_preview = null;
-        // $this->images = null;
-        
-        // $this->nama_barang = null;
-        // $this->harga = null;
-        // $this->berat = null;
-        // $this->ukuran = null;
-        // $this->jenis_barang = null;
-        // $this->gender = null;
-        // $this->stock_barang = null;
-        // $this->deskripsi = null;
-    }
 }

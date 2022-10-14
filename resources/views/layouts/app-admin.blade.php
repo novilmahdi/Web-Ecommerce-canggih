@@ -186,7 +186,7 @@
           </div>
         </div>
         <ul class="navigation-menu">
-          <li class="nav-category-divider">MAIN</li>
+         
           <li>
             <a href="/dashboard">
               <span class="link-title">Dashboard</span>

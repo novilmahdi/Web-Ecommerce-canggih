@@ -224,9 +224,9 @@ Aceh &copy;<script>document.write(new Date().getFullYear());</script> CODE NVL |
 </p>
 
 <div class="social_icon">
-    <a href="#"><i class="ti-facebook"></i></a>
-    <a href="#"><i class="ti-twitter-alt"></i></a>
-    <a href="#"><i class="ti-instagram"></i></a>
+    <a href="https://id-id.facebook.com/"><i class="ti-facebook"></i></a>
+    <a href="https://twitter.com/i/flow/login"><i class="ti-twitter-alt"></i></a>
+    <a href="https://www.instagram.com/?hl=id"><i class="ti-instagram"></i></a>
 </div>
                     </div>
                    

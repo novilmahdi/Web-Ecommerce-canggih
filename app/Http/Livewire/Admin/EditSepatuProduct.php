@@ -16,7 +16,10 @@ class EditSepatuProduct extends Component
 
     use WithFileUploads;
     public $nama_barang, $images, $images_preview, $harga, $berat, $ukuran,
-           $jenis_barang, $gender, $deskripsi, $stock_barang = [];
+           $gender, $deskripsi, $stock_barang = [];
+
+    public $jenis_barang = 'sepatu';
+
     public $product_id;
     // public $product = [];
   
@@ -42,7 +45,7 @@ class EditSepatuProduct extends Component
     public function render()
     {
       
-        $ProductImages = ProductImage::where('product_id', $this->product_id)->get();
+        $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();
         $ProductImagesPreview = ProductImagePreview::where('product_id', $this->product_id)->get();
 
         return view('livewire.admin.edit-sepatu-product', ['ProductImages' => $ProductImages], ['ProductImagesPreview' => $ProductImagesPreview])->extends('layouts.app-admin')->section('content');
@@ -196,6 +199,7 @@ class EditSepatuProduct extends Component
     public function deleteImage($id)
     {
         $image = ProductImage::where('id', $id)->first();
+        File::delete('uploads/all/'. $image->image);
         $image->delete();
         session()->flash('message', 'Gambar berhasil dihapus');
     }

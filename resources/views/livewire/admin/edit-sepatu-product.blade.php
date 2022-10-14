@@ -8,6 +8,7 @@
           <div class="item-wrapper">
             <div class="row mb-3">
               <div class="col-md-8 mx-auto">
+
                 <form id="upload-images"  wire:submit.prevent="updateProduct"  novalidate="novalidate" enctype="multipart/form-data">      
                   
               <div class="form-group row showcase_row_area" >
@@ -42,11 +43,7 @@
                         <div class="loader"></div>
                      </div>
                      <div class="flex bg-blue-200 p-4 rounded-lg">
-                      {{-- @if ($images_preview)
-                      Photo Preview:
-                      <img src="{{ $images_preview->temporaryUrl() }}">
-                  @endif --}}
-                  
+
                   <div wire:ignore>
                   @foreach ($ProductImagesPreview as $testP)
                       
@@ -57,18 +54,46 @@
                     </div>
                   </div>
                   </div>
+
                 <div class="form-group row showcase_row_area">
                   <div class="col-md-3 showcase_text_area">
                     <label>Gambar Multiple</label>
                   </div>
                   <div class="col-md-9 showcase_content_area">
                     <div class="custom-file">
-                      <input id="fileId" type="file" wire:model="images" onchange="loadPreview2(this);" style="padding: 3px; font-size: 12px;" class="form-control" id="exampleInputFile" multiple>
+                      <input  type="file" wire:model="images"  style="padding: 3px; font-size: 12px;" class="form-control"  multiple id="upload-img">
                       @error('images')<span class="text-danger">{{ $message }}</span> @enderror                 
                     </div>
                   </div>
                 </div>
                 
+               
+                  {{-- Image multiple preview --}}
+                  <div class="form-group row showcase_row_area">
+                   <div class="col-md-3 showcase_text_area">
+                     <label> </label>
+                   </div>
+                   <div class="col-md-9 showcase_content_area">
+                     <div wire:loading wire:target="images">
+                       <div class="loader"></div>
+                     </div>
+                      <div class="flex bg-blue-200 p-4 rounded-lg">
+                        <div wire:ignore>
+                       <div class="col">
+                         
+                         <div class="preview_img img-thumbs-hidden" id="img-preview"></div>
+                      </div>
+                    </div>
+ 
+                      
+                     </div>
+                   </div>                            
+                 </div>
+                 {{-- End --}}
+
+
+
+
                 <div class="form-group row showcase_row_area">
                   <div class="col-md-3 showcase_text_area">
                     <label> </label>
@@ -77,22 +102,12 @@
                     <div wire:loading wire:target="images">
                       <div class="loader"></div>
                     </div>
-                    
-                    @if(session()->has('message'))
-                    <div class="alert alert-success text-center">{{ session('message') }}</div>
-                    @endif
-
                      <div class="flex bg-blue-200 p-4 rounded-lg">
-                          {{-- @if ($images_preview)
-                      Photo Preview:
-                      <img src="{{ $images_preview->temporaryUrl() }}">
-                  @endif --}}
-                  
-                  
-                    @foreach ($ProductImages as $image )
+                       
+                      @foreach ($ProductImages as $image )
                     
                     {{-- <div wire:ignore> --}}
-                    <a href="#" wire:click.prevent="deleteImage({{ $image->id }})"> <i class="fa fa-times text-danger mr-2"></i>
+                       <a href="#" wire:click.prevent="deleteImage({{ $image->id }})"> <i class="fa fa-times text-danger mr-2"></i>
                       <img class="w-32 h-32 p-2 rounded-lg" id="preview_img2" src="{{ asset('uploads/all') }}/{{ $image->image }}">
                       </a>
                     {{-- </div> --}}
@@ -120,7 +135,7 @@
                 <label for="inputType1">Berat</label>
                 </div>
                 <div class="col-md-9 showcase_content_area">
-                <input type="number" wire:model="berat" class="form-control" placeholder="berat">
+                <input type="number" wire:model="berat" class="form-control" placeholder="kg">
                 @error('berat')<span class="text-danger">{{ $message }}</span> @enderror                 
                 </div>
              </div>
@@ -130,7 +145,7 @@
               <label for="inputType1">Ukuran</label>
               </div>
               <div class="col-md-9 showcase_content_area">
-              <input type="number" wire:model="ukuran" class="form-control" placeholder="ukuran">
+              <input type="number" wire:model="ukuran" class="form-control" placeholder="cm">
               @error('ukuran')<span class="text-danger">{{ $message }}</span> @enderror                 
               </div>
             </div>
@@ -140,7 +155,7 @@
             <label for="inputType1">Jenis barang</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="jenis_barang" class="form-control" placeholder="jenis_barang">
+            <input type="text" wire:model="jenis_barang" class="form-control" readonly placeholder="jenis_barang">
             @error('jenis_barang')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
@@ -150,7 +165,7 @@
             <label for="inputType1">Gender</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="gender" class="form-control" placeholder="gender">
+            <input type="text" wire:model="gender" class="form-control" placeholder="Pria/Wanita">
             @error('gender')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
@@ -160,7 +175,7 @@
             <label for="inputType1">Stock barang</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="stock_barang" class="form-control" placeholder="stock_barang">
+            <input type="number" wire:model="stock_barang" class="form-control" placeholder="Total unit barang digudang">
             @error('stock_barang')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
@@ -170,7 +185,7 @@
             <label for="inputType1">Deskripsi</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-              <textarea  wire:model="deskripsi" class="form-control" rows="20" style="height:100%;" placeholder="Deskripsi...."></textarea>
+              <textarea  wire:model="deskripsi" class="form-control" rows="20" style="height:100%;" placeholder="Penjelasan barang ya akan dijual..."></textarea>
             {{-- <input type="text" wire:model="deskripsi" class="form-control" placeholder="deskripsi"> --}}
             @error('deskripsi')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
@@ -197,6 +212,16 @@
   </div>
 
   {{-- Reset value input file --}}
+
+  <script>
+    $(document).ready(function() {
+        $('#btn-file-reset-id').on('click', function() {
+            $('#upload-img').val('');
+          });
+      });
+  
+  </script>
+
   <script>
     $(document).ready(function() {
         $('#btn-file-reset-id').on('click', function() {
@@ -223,22 +248,49 @@
        }
       </script>
 
+
+{{-- Jquery image multiple preview --}}
 <script>
-  function loadPreview2(input, id) {
-    id = id || '#preview_img2';
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
- 
-        reader.onload = function (e) {
-            $(id)
-                    .attr('src', e.target.result)
-                    .width(200)
-                    .height(150);
-        };
- 
-        reader.readAsDataURL(input.files[0]);
-    }
- }
+  var imgUpload = document.getElementById('upload-img')
+  , imgPreview = document.getElementById('img-preview')
+  , imgUploadForm = document.getElementById('form-upload')
+  , totalFiles
+  , previewTitle
+  , previewTitleText
+  , img;
+
+imgUpload.addEventListener('change', previewImgs, true);
+
+function previewImgs(event) {
+  totalFiles = imgUpload.files.length;
+  
+     if(!!totalFiles) {
+    imgPreview.classList.remove('img-thumbs-hidden');
+  }
+  
+  for(var i = 0; i < totalFiles; i++) {
+    wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper-thumb');
+    removeBtn = document.createElement("span");
+    nodeRemove= document.createTextNode('x');
+    removeBtn.classList.add('remove-btn');
+    removeBtn.appendChild(nodeRemove);
+    img = document.createElement('img');
+    img.src = URL.createObjectURL(event.target.files[i]);
+    img.classList.add('img-preview-thumb');
+    wrapper.appendChild(img);
+    wrapper.appendChild(removeBtn);
+    imgPreview.appendChild(wrapper);
+   
+    $('.remove-btn').click(function(){
+      $(this).parent('.wrapper-thumb').remove();
+    });    
+
+  }
+  
+  
+}
 </script>
+{{-- End --}}
 
  

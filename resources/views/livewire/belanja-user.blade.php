@@ -23,11 +23,11 @@
                             <td>{{ $no++ }}</td>
                             <td>{{  $pesanan->created_at  }}</td>
                             <td>
-                                <?php $produk = \App\Models\Produk::where('id',  $pesanan->produk_id)->first(); ?>
-                                <img src="{{ asset('storage/photos/'.$produk->gambar) }}" width="62px" alt="">
+                                <?php $produk = \App\Models\Product::where('id',  $pesanan->produk_id)->first(); ?>
+                                <img src="{{ asset('uploads/'.$produk->image_p) }}" width="30px" alt="">
                                 
                             </td>
-                            <td>{{  $produk->nama }}</td>
+                            <td>{{  $produk->nama_barang }}</td>
                             <td>
                                 @if ($pesanan->status == 0)
                                 <strong>pesanan belum ditambahkan ongkir</strong>

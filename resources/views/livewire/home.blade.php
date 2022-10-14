@@ -48,8 +48,8 @@
                                 <h1>Fashion Collection 2019</h1>
                                 @guest
                                 @if (Route::has('login'))
-                                <h5>Apakah Anda Memiliki Vendor ? </h5>
-                                <a href="/register" class="btn_1">Sign Up</a>
+                                <h5>Apakah Anda Memiliki Produk ? </h5>
+                                <a href="/register" class="btn_1">Daftar sekarang</a>
                                 @endif
                             @else
                               
@@ -140,12 +140,12 @@
                                 <div class="card-header-thumbnail">
                                     <div class="thumbnail">
                                         
-                                            <img src="{{ asset('storage/photos/'.$product->gambar) }}">
+                                            <img src="{{ asset('uploads/'.$product->image_p) }}">
                                     </div>
                                      </div> 
                                        
                                 <div class="category_product_text">
-                                    <p><font face="Helvetica"> {{ $product->nama }}</font></p>
+                                    <p><font face="Helvetica"> {{ $product->nama_barang }}</font></p>
                                 </div>
                                 <div class="category_product_text">
                                     <div class="description">
@@ -252,12 +252,12 @@
                                     <div class="card-header-thumbnail">
                                         <div class="thumbnail">
                                             
-                                                <img src="{{ asset('storage/photos/'.$product->gambar) }}">
+                                                <img src="{{ asset('uploads/'.$product->image_p) }}">
                                         </div>
                                          </div> 
                                            
                                     <div class="category_product_text">
-                                        <a href=""><p><font face="Helvetica"> {{ $product->nama }}</font></p></a>
+                                        <a href=""><p><font face="Helvetica"> {{ $product->nama_barang }}</font></p></a>
                                     </div>
                                     <div class="category_product_text">
                                         <div class="description">

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Belanja;
+use App\Models\Product;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use Kavist\RajaOngkir\RajaOngkir;
@@ -59,7 +60,7 @@ class TambahOngkir extends Component
         }
 
         // Mengambil data produk
-        $produk =  Produk::find($this->belanja->produk_id);
+        $produk =  Product::find($this->belanja->produk_id);
 
         // Mengambil biaya ongkir
         $rajaOngkir = new RajaOngkir($this->apiKey);

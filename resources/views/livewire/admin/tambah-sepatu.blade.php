@@ -99,7 +99,7 @@
                 <label for="inputType1">Berat</label>
                 </div>
                 <div class="col-md-9 showcase_content_area">
-                <input type="number" wire:model="berat" class="form-control" placeholder="berat">
+                <input type="number" wire:model="berat" class="form-control" placeholder="kg">
                 @error('berat')<span class="text-danger">{{ $message }}</span> @enderror                 
                 </div>
              </div>
@@ -109,7 +109,7 @@
               <label for="inputType1">Ukuran</label>
               </div>
               <div class="col-md-9 showcase_content_area">
-              <input type="number" wire:model="ukuran" class="form-control" placeholder="ukuran">
+              <input type="number" wire:model="ukuran" class="form-control" placeholder="cm">
               @error('ukuran')<span class="text-danger">{{ $message }}</span> @enderror                 
               </div>
             </div>
@@ -119,7 +119,7 @@
             <label for="inputType1">Jenis barang</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="jenis_barang" class="form-control" placeholder="jenis_barang">
+            <input type="text" wire:model="jenis_barang" class="form-control" readonly placeholder="jenis_barang">
             @error('jenis_barang')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
@@ -129,7 +129,7 @@
             <label for="inputType1">Gender</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="gender" class="form-control" placeholder="gender">
+            <input type="text" wire:model="gender" class="form-control" placeholder="Pria/Wanita">
             @error('gender')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
@@ -139,7 +139,7 @@
             <label for="inputType1">Stock barang</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="stock_barang" class="form-control" placeholder="stock_barang">
+            <input type="text" wire:model="stock_barang" class="form-control" placeholder="Total unit barang digudang">
             @error('stock_barang')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
@@ -149,7 +149,7 @@
             <label for="inputType1">Deskripsi</label>
             </div>
             <div class="col-md-9 showcase_content_area">
-              <textarea  wire:model="deskripsi" class="form-control" rows="20" style="height:100%;" placeholder="Deskripsi...."></textarea>
+              <textarea  wire:model="deskripsi" class="form-control" rows="20" style="height:100%;" placeholder="Penjelasan barang ya akan dijual..."></textarea>
             {{-- <input type="text" wire:model="deskripsi" class="form-control" placeholder="deskripsi"> --}}
             @error('deskripsi')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>

@@ -17,7 +17,9 @@ class TambahSepatu extends Component
     
 
     public $images_preview, $images, $nama_barang, $harga, $berat, $ukuran,
-           $jenis_barang, $gender,  $deskripsi, $stock_barang, $like =  [];    
+           $gender,  $deskripsi, $stock_barang, $like =  [];    
+
+    public $jenis_barang = 'sepatu';
 
     public function render()
     {

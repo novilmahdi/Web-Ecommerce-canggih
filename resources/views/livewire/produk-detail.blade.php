@@ -14,44 +14,53 @@
            
             <div class="lSSlideOuter"><div class="lSSlideWrapper usingCss" style="transition-duration: 600ms; transition-timing-function: ease;">
              <div id="vertical" class="lightSlider lsGrab lSSlide" style="width: 1832px; height: 559px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">
-              <div data-thumb="{{asset('storage/photos/'.$gambar) }}" class="active" style="width: 458px; margin-right: 0px;">
-                <img src="{{ asset('storage/photos/'.$gambar) }}">
+              
+              <div data-thumb="{{asset('uploads/'.$gambar) }}" class="active" style="width: 458px; margin-right: 0px;">
+                <img src="{{ asset('uploads/'.$gambar) }}">
               </div>
-              <div data-thumb="{{ asset('assets/img/product_details/prodect_details_2.png')}}" class="lslide" style="width: 458px; margin-right: 0px;">
-               <img src="{{ asset('assets/img/product_details/prodect_details_2.png')}}" alt="">
-              </div>
-              <div data-thumb="{{ asset('assets/img/product_details/prodect_details_1.png')}}" class="active" style="width: 458px; margin-right: 0px;">
-                <img src="{{ asset('assets/img/product_details/prodect_details_1.png')}}">
-              </div>
-              <div data-thumb="{{ asset('assets/img/product_details/prodect_details_3.png') }}" class="lslide " style="width: 458px; margin-right: 0px;">
-               <img src="{{ asset('assets/img/product_details/prodect_details_3.png')}}"  alt="">
-              </div>
+    
+              @foreach ($ProductImages as $image )
+          
+               
+                <div data-thumb="{{ asset('uploads/all') }}/{{ $image->image }}" class="active" style="width: 458px; margin-right: 0px;">
+                  <img src="{{ asset('uploads/all') }}/{{ $image->image }}" alt="">
+                </div>
+                {{-- <div data-thumb="{{ asset('uploads/all') }}/{{ $image->image }}" class="lslide " style="width: 458px; margin-right: 0px;">
+                 <img src="{{ asset('uploads/all') }}/{{ $image->image }}"  alt="">
+                </div> --}}
+              {{-- </div> --}}
+                @endforeach
+              
+
+
             </div><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div></div>
-            {{-- <ul class="lSPager lSGallery" style="margin-top: 5px; transition-duration: 600ms; width: 463.5px; transform: translate3d(-0.5px, 0px, 0px);">
-             <li style="width:100%;width:110.75px;margin-right:5px" class=""><a href="#"><img src="{{ asset('storage/photos/'.$gambar) }}"></a></li>
-             </li><li style="width:100%;width:110.75px;margin-right:5px" class=""><a href="#">  <img src="{{ asset('assets/img/product_details/prodect_details_3.png')}}"></a></li> --}}
-             {{-- <li style="width:100%;width:110.75px;margin-right:5px" class=""><a href="#">    <img src="{{ asset('assets/img/product_details/prodect_details_1.png') }}"></a></li>
-             <li style="width:100%;width:110.75px;margin-right:5px"  class=""><a href="#">  <img src="{{ asset('assets/img/product_details/prodect_details_4.png') }}"></a></li> --}}
+          
            </ul>
          </div>
           </div>
           {{-- @endforeach --}}
         </div>
+        
         <div class="col-lg-5 offset-lg-1">
           <div class="s_product_text">
             <h3>{{ $nama }}</h3>
             <h2>Rp. {{ number_format($harga)}} </h2>
             <ul class="list">
               <li>
-                <a class="active" href="#">
-                  <span>Category</span> : Household</a>
+                <a class="active">
+                  <span>Gender</span> : {{ $gender }}</a>
               </li>
               <li>
-                <a href="#"> <span>Berat</span> :  {{ $berat }} Kg</a>
+                <a> <span>Ukuran</span> : {{ $ukuran }}</a>
+              </li>
+              <li>
+                <a> <span>Berat</span> :  {{ $berat }} Kg</a>
               </li>
             </ul>
             <p>
-                Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for something that can make your interior look awesome, and at the same time.
+
+              {{Str::limit($deskripsi, 200) }} <a href="#home-tab descripsi">Selanjutnya</a>
+
             </p>
             <div class="card_area">
               <div class="product_count d-inline-block">
@@ -76,9 +85,9 @@
               </div>
               
               <div class="social_icon">
-                <a href="#" class="fb"><i class="ti-facebook"></i></a>
-                <a href="#" class="tw"><i class="ti-twitter-alt"></i></a>
-               <a href="#" class="li"><i class="ti-linkedin"></i></a>
+                <a href="https://id-id.facebook.com/" class="fb"><i class="ti-facebook"></i></a>
+                <a href="https://twitter.com/i/flow/login" class="tw"><i class="ti-twitter-alt"></i></a>
+               <a href="https://id.linkedin.com/" class="li"><i class="ti-linkedin"></i></a>
                   
               </div>
             </div>
@@ -94,37 +103,22 @@
     <div class="container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+          <a class="nav-link active" id="home-tab descripsi" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Specification</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Comments</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
+          <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Reviews</a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <p>
-            Beryl Cook is one of Britain’s most talented and amusing artists
-            .Beryl’s pictures feature women of all shapes and sizes enjoying
-            themselves .Born between the two world wars, Beryl Cook eventually
-            left Kendrick School in Reading at the age of 15, where she went
-            to secretarial school and then into an insurance office. After
-            moving to London and then Hampton, she eventually married her next
-            door neighbour from Reading, John Cook. He was an officer in the
-            Merchant Navy and after he left the sea in 1956, they bought a pub
-            for a year before John took a job in Southern Rhodesia with a
-            motor company. Beryl bought their young son a box of watercolours,
-            and when showing him how to use it, she decided that she herself
-            quite enjoyed painting. John subsequently bought her a child’s
-            painting set for her birthday and it was with this that she
-            produced her first significant work, a half-length portrait of a
-            dark-skinned lady with a vacant expression and large drooping
-            breasts. It was aptly named ‘Hangover’ by Beryl’s husband and
+           {{ $deskripsi }}
           </p>
           <p>
             It is often frustrating to attempt to plan meals that are designed
@@ -138,7 +132,7 @@
             person creating less
           </p>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        {{-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <div class="table-responsive">
             <table class="table">
               <tbody>
@@ -209,7 +203,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> --}}
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
             <div class="col-lg-6">
@@ -304,7 +298,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+        <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
           <div class="row">
             <div class="col-lg-6">
               <div class="row total_rate">

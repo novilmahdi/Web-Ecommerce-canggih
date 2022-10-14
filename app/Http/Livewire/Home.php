@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Belanja;
+use App\Models\Product;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -39,14 +40,14 @@ class Home extends Component
         // filter search
         if($this->search)
         {
-            $this->products = Produk::latest()->where('nama', 'like', '%' .$this->search.'%')
+            $this->products = Product::latest()->where('nama', 'like', '%' .$this->search.'%')
                                     ->where('harga', '>=', $harga_min)
                                     ->where('harga', '<=', $harga_max)
                                     ->get();
         }else
         {
 
-            $this->products = Produk::latest()->where('harga', '>=', $harga_min)
+            $this->products = Product::latest()->where('harga', '>=', $harga_min)
                                     ->where('harga', '<=', $harga_max)
                                     ->get();
         }
@@ -65,7 +66,7 @@ class Home extends Component
             return redirect()->to('login');
         }
         // mencari data produk
-        $produk = Produk::find($id);
+        $produk = Product::find($id);
 
         //lalu ditambahkan ke tabel belanja
         Belanja::create(

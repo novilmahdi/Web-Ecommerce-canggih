@@ -5659,6 +5659,21 @@ button.btn.genric-btn.primary.circle.space{
 
 /* line 2090, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .s_product_text .like_us {
+
+  border-radius: 50%;
+  background-color: rgb(231, 34, 34);
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  margin-left: 20px;
+  box-shadow: -14.142px 14.142px 20px 0px rgba(0, 0, 0, 0.1);
+
+}
+
+.s_product_text .dislike_us {
   border-radius: 50%;
   background-color: white;
   width: 50px;
@@ -5670,6 +5685,7 @@ button.btn.genric-btn.primary.circle.space{
   margin-left: 20px;
   box-shadow: -14.142px 14.142px 20px 0px rgba(0, 0, 0, 0.1);
 }
+
 
 /* line 2101, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .s_product_text .like_us:hover {

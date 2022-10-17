@@ -298,6 +298,25 @@ Aceh &copy;<script>document.write(new Date().getFullYear());</script> CODE NVL |
         })
         
     </script>
+
+     
+    <script>
+        window.addEventListener('showToastSuka', event => {
+            $("#modalForm").modal('hide');
+            toastr.options.positionClass = 'toast-top-center';
+            toastr.success(event.detail.message, 'Disukai');
+        })
+        
+    </script>
+     
+    <script>
+        window.addEventListener('showToastTidakSuka', event => {
+            $("#modalForm").modal('hide');
+            toastr.options.positionClass = 'toast-top-center';
+            toastr.success(event.detail.message, 'Tidak Disukai');
+        })
+        
+    </script>
         {{-- end toast --}}
     
 </body>

@@ -6,23 +6,27 @@ use App\Models\Belanja;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Produk;
+use App\Models\Suka;
 use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Extension\Table\Table;
 use Livewire\Component;
+use Psy\Command\WhereamiCommand;
 
 class ProdukDetail extends Component
 {
 
    
-    public $data, $product_id;
-    // public $nama,$gambar,$data_id;
+      public $data, $product_id;
       public $products = [];
+      public $suka_like = 0;
+      
 
     public function mount($id)
     {
       
          
-        $data = Product::where('id', $id)->first();
-       
+      $data = Product::where('id', $id)->first();
+        
       $this->product_id = $data->id;
 
       $this->data_id = $data->id;
@@ -34,16 +38,15 @@ class ProdukDetail extends Component
       $this->gender = $data->gender;
       $this->deskripsi = $data->deskripsi;
          
-    
-        
-
     }
 
     public function render()
     {
       
         $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();
-        return view('livewire.produk-detail', ['ProductImages' => $ProductImages])->extends('layouts.app')->section('content');
+        $ProductLike = Suka::where('suka','1')
+                            ->get()->count();
+        return view('livewire.produk-detail', ['ProductImages' => $ProductImages], ['ProductLike' => $ProductLike])->extends('layouts.app')->section('content');
 
     }
 
@@ -75,4 +78,61 @@ class ProdukDetail extends Component
             $this->emit('masukKeranjang');
             $this->dispatchBrowserEvent('showToastSuccess');
     }
+
+
+    public function suka($id)
+    {
+        if(!Auth::user())
+        {
+            return redirect()->to('login');
+        }
+        if(Auth::user()->level == 1)
+        {
+            return redirect()->to('login');
+        }
+
+        //mencari data product
+        $produk_suka = Product::find($id);
+        $updateSuka = Suka::where('user_id', Auth::user()->id)->first();
+
+        
+        if( Suka::where('user_id', Auth::user()->id)->first() == null )
+           {
+            Suka::create(
+                 [
+                   'user_id' => Auth::user()->id,
+                   'product_id' => $produk_suka->id,
+                   'suka'  => 1
+                   ]
+                );
+                
+                    $this->dispatchBrowserEvent('showToastSuka');
+                
+            }
+
+
+            elseif($updateSuka->suka == 0)
+            {
+                $updateSuka->delete();
+                Suka::create(
+                     [
+                       'user_id' => Auth::user()->id,
+                       'product_id' => $produk_suka->id,
+                       'suka'  => 1
+                       ]
+                    );
+                    
+                        $this->dispatchBrowserEvent('showToastSuka');
+                    
+                }
+
+            elseif($updateSuka->suka == 1)
+            {
+                
+                $updateSuka->suka = $this->suka_like;
+                $updateSuka->save();
+                        
+                $this->dispatchBrowserEvent('showToastTidakSuka');
+             }
+        }
 }

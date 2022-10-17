@@ -72,10 +72,15 @@
              
         
                     
-               
-        
                   <a href="" wire:click="beli({{ $data_id }})" class="btn_3"  onclick="return false;">Tambah Keranjang</a>
-                  <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
+                  <a href="" wire:click="suka({{ $data_id }})" class="like_us" onclick="return false;"> <i class="ti-heart"></i> </a>
+                  {{ $ProductLike }}
+                  {{-- <a href="" wire:click="tidak_suka({{ $data_id }})" class="dislike_us" onclick="return false;"> <i class="ti-heart"></i> </a>
+                  <a href="" wire:click="deleteSuka({{ $data_id }})" class="dislike_us" onclick="return false;"> <i class="ti-heart"></i> </a> --}}
+
+
+                 
+        
                   {{-- <a  wire:click="beli({{ $data_id }})" class="like_us"> <i class="ti-bag"></i></a> --}}
 
              

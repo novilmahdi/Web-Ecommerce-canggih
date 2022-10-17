@@ -37,16 +37,15 @@ class ProdukDetail extends Component
       $this->ukuran = $data->ukuran;
       $this->gender = $data->gender;
       $this->deskripsi = $data->deskripsi;
-         
-    }
 
+    }
+    
     public function render()
     {
-      
+        
         $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();
-        $ProductLike = Suka::where('suka','1')
-                            ->get()->count();
-        return view('livewire.produk-detail', ['ProductImages' => $ProductImages], ['ProductLike' => $ProductLike])->extends('layouts.app')->section('content');
+        $ProductLike = Suka::where('product_id', $this->product_id)->get()->count();
+        return view('livewire.produk-detail', ['ProductImages' => $ProductImages], compact('ProductLike'))->extends('layouts.app')->section('content');
 
     }
 
@@ -96,9 +95,10 @@ class ProdukDetail extends Component
         $updateSuka = Suka::where('user_id', Auth::user()->id)->first();
 
         
+        //Cek , jika di tabel masih kosong jalankan ini ,dan tambah data baru
         if( Suka::where('user_id', Auth::user()->id)->first() == null )
            {
-            Suka::create(
+                Suka::create(
                  [
                    'user_id' => Auth::user()->id,
                    'product_id' => $produk_suka->id,
@@ -107,32 +107,40 @@ class ProdukDetail extends Component
                 );
                 
                     $this->dispatchBrowserEvent('showToastSuka');
-                
             }
+        // End
 
 
-            elseif($updateSuka->suka == 0)
+            //Cek, apakah ada data, kalau ada lakukan update
+            elseif( Suka::where('user_id', Auth::user()->id)
+                        ->where('product_id', $this->product_id)
+                        ->first())
+
             {
-                $updateSuka->delete();
-                Suka::create(
-                     [
-                       'user_id' => Auth::user()->id,
-                       'product_id' => $produk_suka->id,
-                       'suka'  => 1
-                       ]
-                    );
-                    
-                        $this->dispatchBrowserEvent('showToastSuka');
-                    
-                }
-
-            elseif($updateSuka->suka == 1)
-            {
-                
-                $updateSuka->suka = $this->suka_like;
-                $updateSuka->save();
+                if($updateSuka->suka == 1)
+                {
+                        $updateSuka->delete();
+                        $this->dispatchBrowserEvent('showToastTidakSuka');
                         
-                $this->dispatchBrowserEvent('showToastTidakSuka');
+                    }
              }
+            //  End
+
+
+            // jika data tidak kosong pada tabel , bisa lakukan tambah data baru
+             else
+             {
+             Suka::create(
+                [
+                  'user_id' => Auth::user()->id,
+                  'product_id' => $produk_suka->id,
+                  'suka'  => 1
+                  ]
+               );
+               
+                   $this->dispatchBrowserEvent('showToastSuka');
+             }
+            //  End
+ 
         }
 }

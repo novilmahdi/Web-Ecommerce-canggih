@@ -24,11 +24,10 @@ class ProdukDetail extends Component
     public function mount($id)
     {
       
-         
-      $data = Product::where('id', $id)->first();
+        $data = Product::where('id', $id)->first();
         
-      $this->product_id = $data->id;
-
+        $this->product_id = $data->id;
+        
       $this->data_id = $data->id;
       $this->gambar = $data->image_p;
       $this->nama = $data->nama_barang;
@@ -37,14 +36,18 @@ class ProdukDetail extends Component
       $this->ukuran = $data->ukuran;
       $this->gender = $data->gender;
       $this->deskripsi = $data->deskripsi;
-
+      
+     
     }
     
     public function render()
     {
         
-        $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();
-        $ProductLike = Suka::where('product_id', $this->product_id)->get()->count();
+        $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();      //Menampilkan Menampilkan gambar berdasarkan product id
+        $ProductLike = Suka::where('product_id', $this->product_id)->get()->count();                //Menampilkan Jumah berdasarkan product id
+        // $ProductLike2 = Suka::where('user_id', Auth::user()->id)
+        //                     ->where('product_id', $this->product_id)
+        //                     ->first();                         //Menampilakn berdasarkan user id
         return view('livewire.produk-detail', ['ProductImages' => $ProductImages], compact('ProductLike'))->extends('layouts.app')->section('content');
 
     }
@@ -92,11 +95,14 @@ class ProdukDetail extends Component
 
         //mencari data product
         $produk_suka = Product::find($id);
-        $updateSuka = Suka::where('user_id', Auth::user()->id)->first();
+        $updateSuka = Suka::where('user_id', Auth::user()->id)
+                          ->where('product_id', $this->product_id)
+                          ->latest()
+                          ->first();
 
         
         //Cek , jika di tabel masih kosong jalankan ini ,dan tambah data baru
-        if( Suka::where('user_id', Auth::user()->id)->first() == null )
+        if( Suka::where('user_id', Auth::user()->id)->latest()->first() == null )
            {
                 Suka::create(
                  [
@@ -114,15 +120,16 @@ class ProdukDetail extends Component
             //Cek, apakah ada data, kalau ada lakukan update
             elseif( Suka::where('user_id', Auth::user()->id)
                         ->where('product_id', $this->product_id)
+                        ->latest()
                         ->first())
 
             {
-                if($updateSuka->suka == 1)
-                {
+                // if($updateSuka->suka == 1)
+                // {
                         $updateSuka->delete();
                         $this->dispatchBrowserEvent('showToastTidakSuka');
                         
-                    }
+                    // }
              }
             //  End
 

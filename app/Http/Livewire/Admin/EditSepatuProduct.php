@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductImagePreview;
+use App\Models\Suka;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -47,7 +48,6 @@ class EditSepatuProduct extends Component
       
         $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();
         $ProductImagesPreview = ProductImagePreview::where('product_id', $this->product_id)->get();
-
         return view('livewire.admin.edit-sepatu-product', ['ProductImages' => $ProductImages], ['ProductImagesPreview' => $ProductImagesPreview])->extends('layouts.app-admin')->section('content');
         
     }

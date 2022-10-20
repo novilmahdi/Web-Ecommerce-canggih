@@ -40,7 +40,7 @@ class Home extends Component
         // filter search
         if($this->search)
         {
-            $this->products = Product::latest()->where('nama', 'like', '%' .$this->search.'%')
+            $this->products = Product::latest()->where('nama_barang', 'like', '%' .$this->search.'%')
                                     ->where('harga', '>=', $harga_min)
                                     ->where('harga', '<=', $harga_max)
                                     ->get();

@@ -76,7 +76,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- --- --}}
 
-    
+     {{-- tailwinds --}}
+
+     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     
     @livewireStyles
 </head>
@@ -184,18 +186,8 @@
                 </div>
             </div>
     
-            <div class="search_input" id="search_input_box">
-                <div class="container ">
-                    <form class="d-flex justify-content-between search-inner">
-                        <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                        {{-- <button type="submit" class="btn"></button> --}}
-                        <button type="submit" value="submit"  class="genric-btn primary">
-                            Search
-                        </button>
-                        <span class="ti-close" id="close_search" title="Close Search"></span>
-                    </form>
-                </div>
-            </div>
+         
+            @livewire('navbar-search')
          
         </header>
         <!-- Header part end-->

@@ -38,7 +38,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/tambahproduk', TambahProduk::class);
 Route::get('/store', Store::class);
 Route::get('/belanjauser', BelanjaUser::class);
-Route::get('/produk-details/{id}', ProdukDetail::class);
+Route::get('/produk-details/{id}', ProdukDetail::class)->name('produk-details');
 
 
 Route::get('/TambahOngkir/{id}', TambahOngkir::class);

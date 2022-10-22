@@ -87,13 +87,13 @@
 
                 @else
                   <a href="" wire:click="suka({{ $data_id }})" class="like_us" onclick="return false;"> <i class="ti-heart"></i> </a>
-                  {{ $ProductLike }}c
+                  {{ $ProductLike }}
                 @endif
 
               </div>
               
 
-              
+
               <div class="social_icon">
                 <a href="https://id-id.facebook.com/" class="fb"><i class="ti-facebook"></i></a>
                 <a href="https://twitter.com/i/flow/login" class="tw"><i class="ti-twitter-alt"></i></a>

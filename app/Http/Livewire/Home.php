@@ -15,10 +15,18 @@ class Home extends Component
 
     // atribut filtering
     public $search, $min ,$max;
+    protected $queryString = ['search'];
+
+
+    public function mount()
+    {
+
+        $this->reset();
+    }
 
     public function render()
     {
-      
+        
         // filter maximal
         if($this->max)
         {
@@ -80,5 +88,22 @@ class Home extends Component
 
             $this->emit('masukKeranjang');
             // return redirect()->to('BelanjaUser');
+    }
+
+
+    public function searchItem()
+    {
+      //  Validate
+         $this->validate([
+             'search' => 'required'
+         ]);
+        
+        if($this->search)
+        
+        {
+
+         $this->products = Product::where('nama_barang', 'like', '%'.$this->search.'%')->get();
+        }
+        
     }
 }

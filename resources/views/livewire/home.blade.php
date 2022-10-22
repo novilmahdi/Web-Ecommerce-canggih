@@ -75,7 +75,7 @@
         </div>
         {{-- <div class="product_top_bar_iner product_bar_item d-flex"> --}}
              <div class="product_bar_single ">
-                <input  wire:model="search"  type="search" style="border:none;" placeholder="Search Here">
+                <input  wire:model.defer="search"  type="search" style="border:none;" placeholder="Search Here">
                 @error('search') <span class="error">{{ $message }}</span> @enderror
                 {{-- <button wire:click="searchItem "> Search</button> --}}
                 <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">

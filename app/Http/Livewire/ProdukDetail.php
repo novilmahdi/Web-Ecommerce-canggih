@@ -24,9 +24,9 @@ class ProdukDetail extends Component
     public function mount($id)
     {
       
-        $data = Product::where('id', $id)->first();
+      $data = Product::where('id', $id)->first();
         
-        $this->product_id = $data->id;
+      $this->product_id = $data->id;
         
       $this->data_id = $data->id;
       $this->gambar = $data->image_p;
@@ -45,9 +45,6 @@ class ProdukDetail extends Component
         
         $ProductImages = ProductImage::where('product_id', $this->product_id)->latest()->get();      //Menampilkan Menampilkan gambar berdasarkan product id
         $ProductLike = Suka::where('product_id', $this->product_id)->get()->count();                //Menampilkan Jumah berdasarkan product id
-        // $ProductLike2 = Suka::where('user_id', Auth::user()->id)
-        //                     ->where('product_id', $this->product_id)
-        //                     ->first();                         //Menampilakn berdasarkan user id
         return view('livewire.produk-detail', ['ProductImages' => $ProductImages], compact('ProductLike'))->extends('layouts.app')->section('content');
 
     }
@@ -124,12 +121,10 @@ class ProdukDetail extends Component
                         ->first())
 
             {
-                // if($updateSuka->suka == 1)
-                // {
+                
                         $updateSuka->delete();
                         $this->dispatchBrowserEvent('showToastTidakSuka');
                         
-                    // }
              }
             //  End
 

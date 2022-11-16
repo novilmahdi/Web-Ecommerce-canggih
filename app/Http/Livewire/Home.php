@@ -10,100 +10,61 @@ use Livewire\Component;
 
 class Home extends Component
 {
-
-    public $products = [];
+    public $amount = 6;
+    public $products;   
 
     // atribut filtering
     public $search, $min ,$max;
     protected $queryString = ['search'];
+    protected $listeners = ['reloadHome'];
 
 
     public function mount()
     {
+        $this->products = Product::latest()->take($this->amount)->get();
 
-        $this->reset();
     }
+
+
 
     public function render()
     {
-        
-        // filter maximal
-        if($this->max)
-        {
-            $harga_max   = $this->max;
-        }else{
-            $harga_max = 100000000;
-        }
-
-
-        // filter minimal
-        if($this->min)
-        {
-            $harga_min   = $this->min;
-        }else{
-            $harga_min = 0;
-        }
-
-
-        // filter search
-        if($this->search)
-        {
-            $this->products = Product::latest()->where('nama_barang', 'like', '%' .$this->search.'%')
-                                    ->where('harga', '>=', $harga_min)
-                                    ->where('harga', '<=', $harga_max)
-                                    ->get();
-        }else
-        {
-
-            $this->products = Product::latest()->where('harga', '>=', $harga_min)
-                                    ->where('harga', '<=', $harga_max)
-                                    ->get();
-        }
 
         return view('livewire.home')->extends('layouts.app')->section('content');
     }
 
-    public function beli($id)
+
+
+    public function reloadHome($kategori_id, $gender_id, $query)
     {
-        if(!Auth::user())
+        $this->products = Product::query();
+        if($kategori_id)
         {
-            return redirect()->to('login');
+            $this->products = $this->products->where('kategori_id', $kategori_id);
         }
-        if(Auth::user()->level == 1)
+
+        if($gender_id)
         {
-            return redirect()->to('login');
+            // $this->products = $this->products->where('gender', 'like', '%' . $gender . '%'); 
+            $this->products = $this->products->where('gender_id', $gender_id);
+
         }
-        // mencari data produk
-        $produk = Product::find($id);
+        
+        if($query)
+        {
+            $this->products = $this->products->where('nama_barang', 'like', '%' . $query . '%'); 
+        }
 
-        //lalu ditambahkan ke tabel belanja
-        Belanja::create(
-            [
-                'user_id' => Auth::user()->id,
-                'total_harga' => $produk->harga,
-                'produk_id' => $produk->id,
-                'status' => 0                   // Angka 0 = Belum melakukan ongkos kirim & dibayar
-            ]
-            );
-
-            $this->emit('masukKeranjang');
-            // return redirect()->to('BelanjaUser');
+        $this->products = $this->products->get();
     }
 
+    
 
-    public function searchItem()
+    public function loadProduct()
     {
-      //  Validate
-         $this->validate([
-             'search' => 'required'
-         ]);
-        
-        if($this->search)
-        
-        {
+        $this->amount +=3;
+        return  $this->products = Product::latest()->take($this->amount)->get();
 
-         $this->products = Product::where('nama_barang', 'like', '%'.$this->search.'%')->get();
-        }
-        
     }
+    
 }

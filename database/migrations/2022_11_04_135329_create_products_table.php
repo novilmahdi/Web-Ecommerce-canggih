@@ -15,16 +15,17 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('kategori_id')->unsigned();
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->bigInteger('gender_id')->unsigned();
+            $table->foreign('gender_id')->references('id')->on('genders');
             $table->string('nama_barang');
             $table->longText('image_p')->nullable();
             $table->integer('harga');
             $table->integer('berat');
             $table->integer('ukuran');
-            $table->string('jenis_barang')->nullable();
-            $table->string('gender')->nullable();
             $table->longText('deskripsi')->nullable();
             $table->integer('stock_barang')->nullable();
-            $table->integer('like')->nullable();
             $table->timestamps();
         });
     }

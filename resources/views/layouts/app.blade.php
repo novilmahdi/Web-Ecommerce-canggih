@@ -75,7 +75,7 @@
     {{-- Toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- --- --}}
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
      {{-- tailwinds --}}
 
      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
@@ -165,7 +165,16 @@
                                 </a>
 
                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="{{ route('logout') }}"
+                                @if (Auth::user())
+                                    @if (Auth::user()->level == 1)
+                                    <a href="{{ route('dashboard') }}" class="dropdown-item">
+                                        Dashboard
+                                    </a>
+                                        
+                                    @endif
+                                    
+                                @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">
                                  {{ __('Logout') }}
@@ -310,6 +319,31 @@ Aceh &copy;<script>document.write(new Date().getFullYear());</script> CODE NVL |
         
     </script>
         {{-- end toast --}}
+
+        {{-- Sweet Alert --}}
+        <script>
+        //Tampilan modal
+        window.addEventListener('showModalSuccess', event => {
+        $("#modalForm").modal('hide');
+      toastr.options.positionClass = 'toast-top-right';
+      toastr.success(event.detail.message, ' Terkirim!');
+        $('#modalForm').on('hidden.bs.modal', function (e) {
+     $(this)
+        .find("input,textarea,select")
+         .val('')
+           .end()
+             .find("input[type=checkbox], input[type=radio], input[type=file]")
+              .prop("checked", "")
+                 .end();    
+                    })
+                    swal("Terkirim!", "Silahkan tekan OK!", "success");
+  
+           })
+  
+  
+          
+    
+    </script>
     
 </body>
 </html>

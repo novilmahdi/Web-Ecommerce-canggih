@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class NavbarSearch extends Component
 {
-
   
     public $query;
     public $products;
@@ -25,8 +24,9 @@ class NavbarSearch extends Component
         $this->products = [];
         $this->highlightIndex = 0;
     }
-  
 
+    
+  
     public function incrementHighlight()
     {
         if($this->highlightIndex === count($this->products) - 1)
@@ -34,10 +34,10 @@ class NavbarSearch extends Component
             $this->highlightIndex = 0;
             return;
         }
-
             $this->highlightIndex++;
-        
     }
+
+
 
     public function decrementHighlight()
     {
@@ -46,10 +46,10 @@ class NavbarSearch extends Component
             $this->highlightIndex = count($this->products) - 1;
             return;
         }
-
             $this->highlightIndex--;
-        
     }
+
+
 
     public function selectProduct()
     {
@@ -61,17 +61,19 @@ class NavbarSearch extends Component
         }
     }
 
+
+
     public function updatedQuery()
     {
-       
         $this->products = Product::where('nama_barang', 'like', '%'. $this->query.'%')
                                  ->get()
                                  ->toArray();
     }
 
+    
+
     public function render()
     {
-
         return view('livewire.navbar-search');
     }
 }

@@ -9,33 +9,21 @@
       <div class="row s_product_inner">
         <div class="col-lg-5">
           <div class="product_slider_img">
-            {{-- @foreach ($products as $product) --}}
-                
-           
             <div class="lSSlideOuter"><div class="lSSlideWrapper usingCss" style="transition-duration: 600ms; transition-timing-function: ease;">
              <div id="vertical" class="lightSlider lsGrab lSSlide" style="width: 1832px; height: 559px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">
               
-              <div data-thumb="{{asset('uploads/'.$gambar) }}" class="active" style="width: 458px; margin-right: 0px;">
+              <div data-thumb="{{asset('uploads/'.$gambar) }}" class="lslide active" style="width: 458px; margin-right: 0px;">
                 <img src="{{ asset('uploads/'.$gambar) }}">
               </div>
     
               @foreach ($ProductImages as $image )
-          
-               
-                <div data-thumb="{{ asset('uploads/all') }}/{{ $image->image }}" class="active" style="width: 458px; margin-right: 0px;">
+                <div data-thumb="{{ asset('uploads/all') }}/{{ $image->image }}" class="lslide" style="width: 458px; margin-right: 0px;">
                   <img src="{{ asset('uploads/all') }}/{{ $image->image }}" alt="">
                 </div>
-                {{-- <div data-thumb="{{ asset('uploads/all') }}/{{ $image->image }}" class="lslide " style="width: 458px; margin-right: 0px;">
-                 <img src="{{ asset('uploads/all') }}/{{ $image->image }}"  alt="">
-                </div> --}}
-              {{-- </div> --}}
                 @endforeach
-              
-
-
             </div><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div></div>
           
-           </ul>
+         
          </div>
           </div>
           {{-- @endforeach --}}
@@ -48,7 +36,7 @@
             <ul class="list">
               <li>
                 <a class="active">
-                  <span>Gender</span> : {{ $gender }}</a>
+                  <span>Gender</span> : {{ $gender->gender }}</a>
               </li>
               <li>
                 <a> <span>Ukuran</span> : {{ $ukuran }}</a>

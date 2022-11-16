@@ -10418,4 +10418,14 @@ img.thumb-prev{
   box-shadow: 0px 0px 3px grey;
   transition:all .3s ease-in-out;
 }
+
+.borderForm {
+  border: 1px solid #378cef;
+  border-radius: 14px;
+}
+
+
+button.btn.btn-primary.Rsearch {
+  border-radius: 10px;
+}
 /* End */

@@ -150,24 +150,50 @@
               </div>
             </div>
 
-          <div class="form-group row showcase_row_area" >
-            <div class="col-md-3 showcase_text_area">
-            <label for="inputType1">Jenis barang</label>
-            </div>
-            <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="jenis_barang" class="form-control" readonly placeholder="jenis_barang">
-            @error('jenis_barang')<span class="text-danger">{{ $message }}</span> @enderror                 
-            </div>
-           </div>
-
            <div class="form-group row showcase_row_area" >
             <div class="col-md-3 showcase_text_area">
             <label for="inputType1">Gender</label>
             </div>
+
+            @if ($gender)
+              
+            
             <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="gender" class="form-control" placeholder="Pria/Wanita">
+              <div class="form-inline">
+                @if($gender == 1)
+                <div class="radio mb-3">
+                  <label class="radio-label mr-4">
+                    <input name="sample" wire:model="preferred" type="radio" value="{{ $gender_id }}" checked> Pria <i class="input-frame"></i>
+                    
+                  </label>
+                </div>
+                <div class="radio mb-3">
+                  <label class="radio-label mr-4">
+                    <input name="sample" wire:model="preferred" value="2" type="radio"> Wanita <i class="input-frame"></i>
+                    
+                    {{-- @endif --}}
+                  </label>
+                </div>
+                @endif
+                @if($gender == 2)
+                <div class="radio mb-3">
+                  <label class="radio-label mr-4">
+                    <input name="sample" wire:model="preferred" value="1" type="radio"> Pria <i class="input-frame"></i>
+                    
+                  </label>
+                </div>
+                <div class="radio mb-3">
+                  <label class="radio-label mr-4">
+                    <input name="sample" wire:model="preferred" value="{{ $gender_id }}" type="radio" checked> Wanita <i class="input-frame"></i>
+                    
+                  </label>
+                </div>
+                @endif
+               
+              </div>
             @error('gender')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
+            @endif
            </div>
 
            <div class="form-group row showcase_row_area" >

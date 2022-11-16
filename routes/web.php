@@ -10,6 +10,7 @@ use App\Http\Livewire\Admin\TambahSepatu;
 use App\Http\Livewire\Bayar;
 use App\Http\Livewire\BelanjaUser;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\Kontak;
 use App\Http\Livewire\ProdukDetail;
 use App\Http\Livewire\Store;
 use App\Http\Livewire\TambahOngkir;
@@ -36,11 +37,12 @@ Auth::routes();
 
 Route::get('/', Home::class)->name('home');
 Route::get('/tambahproduk', TambahProduk::class);
-Route::get('/store', Store::class);
+Route::get('/store', Store::class)->name('store');
 Route::get('/belanjauser', BelanjaUser::class);
+Route::get('/contact', Kontak::class);
+
+
 Route::get('/produk-details/{id}', ProdukDetail::class)->name('produk-details');
-
-
 Route::get('/TambahOngkir/{id}', TambahOngkir::class);
 Route::get('/Bayar/{id}', Bayar::class);
 

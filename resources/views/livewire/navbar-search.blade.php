@@ -17,41 +17,51 @@
             />
         </form>
 
-            <div wire:loading class="absolute z-10 list-group bg-white w-full rounded-t-none shadow-lg" >
-                <div class="list-item">Searching...</div>
+        <ul>
+
+            <div wire:loading class="absolute z-10 p-2 m-2 list-group bg-white w-11/12 rounded-t-none shadow-lg" >
+                <div class="list-item p-2">Searching...</div>
             </div>
+        </ul>
 
         @if (!empty($query))
 
         
-        <div class="absolute z-10 list-group bg-white w-full rounded-t-none shadow-lg">
+        {{-- agar input search jadi reset ketika di klik sembarang(kombinasi class) --}}
+        <div class="fixed top-0 right-0 bottom-0 left-0" wire:click="reset"></div>
+        {{-- End --}}
 
-            {{-- agar input search jadi reset ketika di klik sembarang --}}
-            <div class="fixed top-0 right-0 bottom-0 left-0" wire:click="reset"></div>
-            {{-- End --}}
-        @if (!empty($products))
-       
-      
+            <div class="absolute z-10 p-2 m-2 list-group bg-white w-11/12 rounded-t-none shadow-lg">
+    
+            @if (!empty($products))
+           
+          
+    
+                @foreach ($products as $i => $product )
+    
+                <ul>
+    
+                    <a href="{{ route('produk-details', $product['id']) }}" 
+                    class="list-item p-2 {{ $highlightIndex === $i ? 'bg-blue-100' : ''}}"> {{ $product['nama_barang'] }}</a>
+             
+                </ul>
+    
+                            {{-- <button type="submit"   wire:click="searchItem  value="submit"  class="genric-btn primary">Search</button>                              
+                            <span class="ti-close" id="close_search" title="Close Search"></span> --}}
+                        
+    
+                @endforeach
+    
+                
+                @else
+                    <ul>
+                        <div class="list-item text-center">Pencarian tidak ada...</div>
+                    </ul>
 
-            @foreach ($products as $i => $product )
-
-                           <a href="{{ route('produk-details', $product['id']) }}" 
-                           class="list-item {{ $highlightIndex === $i ? 'bg-blue-100' : ''}}"> {{ $product['nama_barang'] }}</a>
-                    
-
-                        {{-- <button type="submit"   wire:click="searchItem  value="submit"  class="genric-btn primary">Search</button>                              
-                        <span class="ti-close" id="close_search" title="Close Search"></span> --}}
-                    
-
-            @endforeach
-
-            
-            @else
-            <div class="list-item">Kosong</div>
-            
-            @endif
-        </div>
+                @endif
+            </div>
         @endif
 
     </div>
 </div>
+

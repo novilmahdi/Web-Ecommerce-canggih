@@ -6,37 +6,6 @@
             </div>    
         @endif
     @endif
-
-    {{-- Tampilan Produc --}}
-    {{-- <section class="products mb-5">
-        <div class="row mt-4">
-            @foreach ($products as $product )
-            <div class="col-md-3 mb-3">
-            <div class="card">
-                <div class="card-body text-center">
-                    <img src="{{ asset('storage/photos/'.$product->gambar) }}" width="200px" height="200px" alt="">
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <h5><strong>{{ ($product->nama) }}</strong></h5>
-                            <h6><strong>Rp. {{ number_format($product->harga) }}</strong></h6>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12">
-                            <button class="btn btn-success btn-block" wire:click="beli({{ $product->id }})">
-                                Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>   
-            </div>
-            @endforeach
-        </div>
-    </section> --}}
-{{-- End --}}
-
-
 <section class="banner_part">
     <div class="container">
         <div class="row align-items-center">
@@ -52,9 +21,7 @@
                                 <a href="/register" class="btn_1">Daftar sekarang</a>
                                 @endif
                             @else
-                              
                             @endguest
-                               
                             </div>
                         </div>
                     </div>
@@ -70,44 +37,30 @@
 <section class="new_arrival section_padding">
 <section class="new_arrival section_padding">
     <div class="col-lg-12 mb-4">
-    <div class="product_top_bar d-flex justify-content-between align-items-center">
+    <div class="product_top_bar d-flex justify-content-between align-items-center" style="float: right;">
         <div class="single_product_menu product_bar_item">
         </div>
-        {{-- <div class="product_top_bar_iner product_bar_item d-flex"> --}}
-             <div class="product_bar_single ">
-                <input  wire:model.defer="search"  type="search" style="border:none;" placeholder="Search Here">
-                @error('search') <span class="error">{{ $message }}</span> @enderror
-                {{-- <button wire:click="searchItem "> Search</button> --}}
-                <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
-                    Search
-                </button>
-            {{-- </div> --}}
-        </div>
-        <div class="product_bar_single ">
+        {{-- <div class="product_bar_single ">
             <input  wire:model="min" type="search" style="border:none;" placeholder="Harga min">
             @error('search') <span class="error">{{ $message }}</span> @enderror
-            {{-- <button wire:click="searchItem "> Search</button> --}}
             <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
                 Search
             </button>
-        {{-- </div> --}}
-    </div>
-    <div class="product_bar_single ">
-        <input  wire:model="max" type="search" style="border:none;" placeholder="Harga max">
-        @error('search') <span class="error">{{ $message }}</span> @enderror
-        {{-- <button wire:click="searchItem "> Search</button> --}}
-        <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
-            Search
-        </button>
-    {{-- </div> --}}
-</div>
-
-    
+        </div>
+        <div class="product_bar_single ">
+            <input  wire:model="max" type="search" style="border:none;" placeholder="Harga max">
+            @error('search') <span class="error">{{ $message }}</span> @enderror
+            <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
+                Search
+            </button>
+        </div> --}}
+        
+         
+     @livewire('filter-search')
     </div>
     </div>
 </section>
-    <div class="container">
-        
+    {{-- <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">
                 <div class="arrival_tittle">
@@ -117,21 +70,19 @@
             <div class="col-lg-4">
                 <div class="arrival_filter_item filters">
                     <ul>
-                        <li class="active controls" data-filter="*">all</li>
-                        <li class="controls" data-toggle=".men">men</li>
-                        <li class="controls" data-toggle=".women">women</li>
-                        <li class="controls" data-toggle=".shoes">shoes</li>
+                        <li class="active controls" data-filter="*">Semua</li>
+                        <li class="controls" data-toggle=".men">Pria</li>
+                        <li class="controls" data-toggle=".women">Wanita</li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
+    </div> --}}
+    <div class="container" wire:loading.remove>
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
 
-                    
                     @foreach ($products as $product )
                     <div class="col-lg-4 col-sm-6">
                         <div class="single_category_product">
@@ -139,10 +90,9 @@
                             <div class="single_category_img">
                                 <div class="card-header-thumbnail">
                                     <div class="thumbnail">
-                                        
                                             <img src="{{ asset('uploads/'.$product->image_p) }}">
                                     </div>
-                                     </div> 
+                                 </div> 
                                        
                                 <div class="category_product_text">
                                     <p><font face="Helvetica"> {{ $product->nama_barang }}</font></p>
@@ -150,19 +100,12 @@
                                 <div class="category_product_text">
                                     <div class="description">
                                         Rp. {{ number_format($product->harga) }} 
-                                    
                                     </div>
                                     <div class="description">
-                                        
-                                     {{-- {!! $data->kategori->kategori_id_color !!} --}}
-                                     {{-- <a wire:click="beli({{ $product->id }})"><i class="ti-heart"></i></a> --}}
                                      <a href="{{ url('produk-details/'.$product->id) }}"><i class="ti-bag"></i></a>
-                                     {{-- <a wire:click="beli({{ $product->id }})"><i class="ti-bag"></i></a> --}}
-                                      
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                      @endforeach
@@ -170,121 +113,18 @@
             </div>
         </div>
     </div>
+
+    <div class="flex items-center justify-center mt-10">
+        <div wire:loading style="border-top-color: transparent;"
+        class="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin">
+        </div>
+
+    </div>
     <section class="cat_product_area section_padding border_top">
         <div class="col-lg-12 text-center">
-              <a href="#" class="btn_2">More Items</a>
+              <a href="" wire:click="loadProduct" class="btn_2" onclick="return false;">More Items</a>
         </div>
        </section>
 </section>
-<!-- new arrival part end -->
 
-<!-- new arrival part here -->
-<section class="new_arrival section_padding">
-    <section class="new_arrival section_padding">
-        <div class="col-lg-12 mb-4">
-        <div class="product_top_bar d-flex justify-content-between align-items-center">
-            <div class="single_product_menu product_bar_item">
-            </div>
-            {{-- <div class="product_top_bar_iner product_bar_item d-flex"> --}}
-                 <div class="product_bar_single ">
-                    <input  wire:model="search"  type="search" style="border:none;" placeholder="Search Here">
-                    @error('search') <span class="error">{{ $message }}</span> @enderror
-                    {{-- <button wire:click="searchItem "> Search</button> --}}
-                    <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
-                        Search
-                    </button>
-                {{-- </div> --}}
-            </div>
-            <div class="product_bar_single ">
-                <input  wire:model="min" type="search" style="border:none;" placeholder="Harga min">
-                @error('search') <span class="error">{{ $message }}</span> @enderror
-                {{-- <button wire:click="searchItem "> Search</button> --}}
-                <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
-                    Search
-                </button>
-            {{-- </div> --}}
-        </div>
-        <div class="product_bar_single ">
-            <input  wire:model="max" type="search" style="border:none;" placeholder="Harga max">
-            @error('search') <span class="error">{{ $message }}</span> @enderror
-            {{-- <button wire:click="searchItem "> Search</button> --}}
-            <button type="submit"  wire:click="searchItem " value="submit" class="genric-btn primary">
-                Search
-            </button>
-        {{-- </div> --}}
-    </div>
-    
-        
-        </div>
-        </div>
-    </section>
-        <div class="container">
-            
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="arrival_tittle">
-                        <h2>new arrival</h2>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="arrival_filter_item filters">
-                        <ul>
-                            <li class="active controls" data-filter="*">all</li>
-                            <li class="controls" data-toggle=".men">men</li>
-                            <li class="controls" data-toggle=".women">women</li>
-                            <li class="controls" data-toggle=".shoes">shoes</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="row">
-    
-                        
-                        @foreach ($products as $product )
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="single_category_product">
-                        
-                                <div class="single_category_img">
-                                    <div class="card-header-thumbnail">
-                                        <div class="thumbnail">
-                                            
-                                                <img src="{{ asset('uploads/'.$product->image_p) }}">
-                                        </div>
-                                         </div> 
-                                           
-                                    <div class="category_product_text">
-                                        <a href=""><p><font face="Helvetica"> {{ $product->nama_barang }}</font></p></a>
-                                    </div>
-                                    <div class="category_product_text">
-                                        <div class="description">
-                                            Rp. {{ number_format($product->harga) }} 
-                                        
-                                        </div>
-                                        <div class="description">
-                                            
-                                            <a href="{{ url('produk-details/'.$product->id) }}"><i class="ti-bag"></i></a>
-
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                         @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-        <section class="cat_product_area section_padding border_top">
-            <div class="col-lg-12 text-center">
-                  <a href="#" class="btn_2">More Items</a>
-            </div>
-           </section>
-    </section>
-    <!-- new arrival part end -->
 </div>

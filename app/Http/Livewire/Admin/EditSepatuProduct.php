@@ -19,10 +19,13 @@ class EditSepatuProduct extends Component
     public $nama_barang, $images, $images_preview, $harga, $berat, $ukuran,
            $gender, $deskripsi, $stock_barang = [];
 
-    public $jenis_barang = 'sepatu';
 
-    public $product_id;
+
+    public $product_id,$gender_id;
     // public $product = [];
+    public $preferred = false;
+
+
   
 
     public function mount($id)
@@ -34,8 +37,8 @@ class EditSepatuProduct extends Component
             $this->harga = $product->harga;
             $this->berat = $product->berat;
             $this->ukuran = $product->ukuran;
-            $this->jenis_barang = $product->jenis_barang;
-            $this->gender = $product->gender;
+            $this->gender = $product->gender_id;
+            // $this->preferred = $product->gender_id;
             $this->deskripsi = $product->deskripsi;
             $this->stock_barang = $product->stock_barang;
       
@@ -62,8 +65,7 @@ class EditSepatuProduct extends Component
                 'harga' => 'required|integer',
                 'berat' => 'required|integer',
                 'ukuran' => 'required|integer',
-                'jenis_barang' => 'required',
-                'gender' => 'required',
+                'preferred' => 'required',
                 'deskripsi' => 'required',
                 'stock_barang' => 'required|integer',
             ]);
@@ -72,125 +74,241 @@ class EditSepatuProduct extends Component
 
     public function updateProduct()
     {
-        
+        // Jika radio button true
+        if($this->preferred)
+        {
+               // Jika Gambar Input Images_Preview, maka update Gambar
+         if($this->images_preview)
+         {
+           $this->validate([
+               'nama_barang' => 'required',
+               'harga' => 'required|integer',
+               'berat' => 'required|integer',
+               'ukuran' => 'required|integer',
+               'preferred' => 'required',
+               'deskripsi' => 'required',
+               'stock_barang' => 'required|integer',
+               
+           ]);
+
+           $imageNamePreview = $this->images_preview->store('all');
+           
+           // Pengecekan dana mengahpus foto lama dari storage
+           $data = Product::find($this->product_id);
+           if($this->product_id)
+            {
+             File::delete('uploads/'.$data->image_p);
+            }
+           // End 
+       
+          // Update Tabel Product
+           $product = Product::where('id', $this->product_id)->first();
+           $product->image_p = $imageNamePreview;
+           $product->nama_barang = $this->nama_barang;
+           $product->harga = $this->harga; 
+           $product->berat =  $this->berat;  
+           $product->ukuran = $this->ukuran; 
+           $product->gender_id = $this->preferred ;
+           $product->deskripsi = $this->deskripsi;
+           $product->stock_barang = $this->stock_barang;
+           $product->save();
+           // End
+           
+           
+           //Update Tabel Gambar preview
+           $ProductImagesP = ProductImagePreview::where('product_id', $this->product_id)->first();
+           $ProductImagesP->image_preview = $product->image_p;
+           $ProductImagesP->save();
+           // end
+
+
+           // Update Tabel Gambar Multiple
+           if($this->images != '')
+             {
+               foreach($this->images as $key => $image) {
+               $pimage = new ProductImage();
+               $pimage->product_id = $product->id;
+   
+               $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
+               $this->images[$key]->storeAs('all', $imageName);
+   
+               $pimage->image = $imageName;
+               $pimage->save();
+
+                }   
+              }
+           // End   
+               
+              $this->images = '';     
+              $this->dispatchBrowserEvent('ShowcloseModal');
+             }
+
+        // Maka jika tidak ada inputan Images_Preview, tidak melakukan update gambar  
+        else
+            {
+           $this->validate([
+               'nama_barang' => 'required',
+               'harga' => 'required|integer',
+               'berat' => 'required|integer',
+               'ukuran' => 'required|integer',
+               'preferred' => 'required',
+               'deskripsi' => 'required',
+               'stock_barang' => 'required|integer',
+               
+           ]);
+   
+           // Update Tabel Product
+           $product = Product::where('id', $this->product_id)->first();
+           $product->nama_barang = $this->nama_barang;
+           $product->harga = $this->harga; 
+           $product->berat =  $this->berat;  
+           $product->ukuran = $this->ukuran; 
+           $product->gender_id = $this->preferred;
+           $product->deskripsi = $this->deskripsi;
+           $product->stock_barang = $this->stock_barang;
+           $product->save();
+           // End
+
+
+   
+            // Update Tabel Gambar Multiple
+             if($this->images != '')
+               {
+                 foreach($this->images as $key => $image) {
+                 $pimage = new ProductImage();
+                 $pimage->product_id = $product->id;
+   
+                  $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
+                  $this->images[$key]->storeAs('all', $imageName);
+   
+                  $pimage->image = $imageName;
+                  $pimage->save();
+          
+                    }   
+                }
+                $this->images = '';
+                $this->dispatchBrowserEvent('ShowcloseModal');
+             }
+        }
+        //End radio buttun tru
+
+
+        //Jika radio butto false
+        else
+        { 
+            
         // Jika Gambar Input Images_Preview, maka update Gambar
          if($this->images_preview)
-          {
-            $this->validate([
-                'nama_barang' => 'required',
-                // 'image_p' => 'file|max:7000',
-                'harga' => 'required|integer',
-                'berat' => 'required|integer',
-                'ukuran' => 'required|integer',
-                'jenis_barang' => 'required',
-                'gender' => 'required',
-                'deskripsi' => 'required',
-                'stock_barang' => 'required|integer',
-                
-            ]);
-            
+         {
+           $this->validate([
+               'nama_barang' => 'required',
+               'harga' => 'required|integer',
+               'berat' => 'required|integer',
+               'ukuran' => 'required|integer',
+               'deskripsi' => 'required',
+               'stock_barang' => 'required|integer',
+               
+           ]);
 
-            $imageNamePreview = $this->images_preview->store('all');
-            
-            // Pengecekan dana mengahpus foto lama dari storage
-            $data = Product::find($this->product_id);
-            if($this->product_id)
-             {
-              File::delete('uploads/'.$data->image_p);
-             }
-            // End 
-        
-           // Update Tabel Product
-            $product = Product::where('id', $this->product_id)->first();
-            $product->image_p = $imageNamePreview;
-            $product->nama_barang = $this->nama_barang;
-            $product->harga = $this->harga; 
-            $product->berat =  $this->berat;  
-            $product->ukuran = $this->ukuran; 
-            $product->jenis_barang =  $this->jenis_barang; 
-            $product->gender = $this->gender;
-            $product->deskripsi = $this->deskripsi;
-            $product->stock_barang = $this->stock_barang;
-            $product->save();
-            // End
-            
-            
-            //Update Tabel Gambar preview
-            $ProductImagesP = ProductImagePreview::where('product_id', $this->product_id)->first();
-            $ProductImagesP->image_preview = $product->image_p;
-            $ProductImagesP->save();
-            // end
-
-
-            // Update Tabel Gambar Multiple
-            if($this->images != '')
-              {
-                foreach($this->images as $key => $image) {
-                $pimage = new ProductImage();
-                $pimage->product_id = $product->id;
-    
-                $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
-                $this->images[$key]->storeAs('all', $imageName);
-    
-                $pimage->image = $imageName;
-                $pimage->save();
-
-                 }   
-               }
-            // End   
-                
-               $this->images = '';     
-               $this->dispatchBrowserEvent('ShowcloseModal');
-              }
-
-         // Maka jika tidak ada inputan Images_Preview, tidak melakukan update gambar  
-         else
-             {
-            $this->validate([
-                'nama_barang' => 'required',
-                'harga' => 'required|integer',
-                'berat' => 'required|integer',
-                'ukuran' => 'required|integer',
-                'jenis_barang' => 'required',
-                'gender' => 'required',
-                'deskripsi' => 'required',
-                'stock_barang' => 'required|integer',
-                
-            ]);
-    
-            // Update Tabel Product
-            $product = Product::where('id', $this->product_id)->first();
-            $product->nama_barang = $this->nama_barang;
-            $product->harga = $this->harga; 
-            $product->berat =  $this->berat;  
-            $product->ukuran = $this->ukuran; 
-            $product->jenis_barang =  $this->jenis_barang; 
-            $product->gender = $this->gender;
-            $product->deskripsi = $this->deskripsi;
-            $product->stock_barang = $this->stock_barang;
-            $product->save();
-            // End
-
-
-    
-             // Update Tabel Gambar Multiple
-              if($this->images != '')
-                {
-                  foreach($this->images as $key => $image) {
-                  $pimage = new ProductImage();
-                  $pimage->product_id = $product->id;
-    
-                   $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
-                   $this->images[$key]->storeAs('all', $imageName);
-    
-                   $pimage->image = $imageName;
-                   $pimage->save();
+           $imageNamePreview = $this->images_preview->store('all');
            
-                     }   
-                 }
-                 $this->images = '';
-                 $this->dispatchBrowserEvent('ShowcloseModal');
+           // Pengecekan dana mengahpus foto lama dari storage
+           $data = Product::find($this->product_id);
+           if($this->product_id)
+            {
+             File::delete('uploads/'.$data->image_p);
+            }
+           // End 
+       
+          // Update Tabel Product
+           $product = Product::where('id', $this->product_id)->first();
+           $product->image_p = $imageNamePreview;
+           $product->nama_barang = $this->nama_barang;
+           $product->harga = $this->harga; 
+           $product->berat =  $this->berat;  
+           $product->ukuran = $this->ukuran; 
+           $product->deskripsi = $this->deskripsi;
+           $product->stock_barang = $this->stock_barang;
+           $product->save();
+           // End
+           
+           
+           //Update Tabel Gambar preview
+           $ProductImagesP = ProductImagePreview::where('product_id', $this->product_id)->first();
+           $ProductImagesP->image_preview = $product->image_p;
+           $ProductImagesP->save();
+           // end
+
+
+           // Update Tabel Gambar Multiple
+           if($this->images != '')
+             {
+               foreach($this->images as $key => $image) {
+               $pimage = new ProductImage();
+               $pimage->product_id = $product->id;
+   
+               $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
+               $this->images[$key]->storeAs('all', $imageName);
+   
+               $pimage->image = $imageName;
+               $pimage->save();
+
+                }   
               }
+           // End   
+               
+              $this->images = '';     
+              $this->dispatchBrowserEvent('ShowcloseModal');
+             }
+
+        // Maka jika tidak ada inputan Images_Preview, tidak melakukan update gambar  
+        else
+            {
+           $this->validate([
+               'nama_barang' => 'required',
+               'harga' => 'required|integer',
+               'berat' => 'required|integer',
+               'ukuran' => 'required|integer',
+               'deskripsi' => 'required',
+               'stock_barang' => 'required|integer',
+               
+           ]);
+   
+           // Update Tabel Product
+           $product = Product::where('id', $this->product_id)->first();
+           $product->nama_barang = $this->nama_barang;
+           $product->harga = $this->harga; 
+           $product->berat =  $this->berat;  
+           $product->ukuran = $this->ukuran; 
+           $product->deskripsi = $this->deskripsi;
+           $product->stock_barang = $this->stock_barang;
+           $product->save();
+           // End
+
+
+   
+            // Update Tabel Gambar Multiple
+             if($this->images != '')
+               {
+                 foreach($this->images as $key => $image) {
+                 $pimage = new ProductImage();
+                 $pimage->product_id = $product->id;
+   
+                  $imageName = Carbon::now()->timestamp . $key . '.' .$this->images[$key]->extension();
+                  $this->images[$key]->storeAs('all', $imageName);
+   
+                  $pimage->image = $imageName;
+                  $pimage->save();
+          
+                    }   
+                }
+                $this->images = '';
+                $this->dispatchBrowserEvent('ShowcloseModal');
+             }
+        }
+        //End radio button false
+      
+     
     
      }
 

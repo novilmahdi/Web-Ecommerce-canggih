@@ -5,22 +5,34 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Product;
 use App\Models\ProductImagePreview;
 use App\Models\ProductImage;
+use App\Models\Suka;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class EditSepatu extends Component
 {
-    public $products = [];
-    public $image_preview, $nama_barang, $harga, $berat, $ukuran, $jenis_barang, $gender, 
-           $deskripsi, $stock_barang, $like;    
+    use WithPagination;
+    // public $products = [];
     public $userIdBeingRemoved = null;
+    protected $paginationTheme = 'bootstrap';
+    public $search = '';
+ 
+    protected $queryString = ['search'];
 
-
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
     public function render()
     {   
-        $this->products = Product::latest()->get();
-        return view('livewire.admin.edit-sepatu')->extends('layouts.app-admin')->section('content');
+        // $this->products = Product::latest()->paginate(5);
+        
+     
+        return view('livewire.admin.edit-sepatu',[
+            'products' => Product::where('nama_barang', 'like', '%'.$this->search.'%')->latest()->paginate(5)
+        ])->extends('layouts.app-admin')->section('content');
     }
 
     

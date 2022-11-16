@@ -43,14 +43,29 @@
         </div>
       </div>
       {{-- ----------- --}}
+      
     <div class="page-content-wrapper">
         <div class="page-content-wrapper-inner">
         <div class="col-lg-12">
             <div class="grid">
+
+              
+
               <p class="grid-header">Image&amp;Components Table</p>
-              <div class="grid-body">
-              <div class="item-wrapper">
-                {{-- <div class="table-responsive"> --}}
+              
+              <div class="table-responsive">
+                  <form action="#" class="t-header-search-box">
+                    <div class="col-md-3 input-group" style="float: right;">
+                      <div class="borderForm">
+
+                        <input type="text" wire:model="search"  id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+                        <button class="btn btn-primary Rsearch" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+                      </div>
+                    </div>
+                  </form>
+
+               
+                <div class="item-wrapper">
                   <table class="table table-hover">
                     <thead>
                       <tr>
@@ -99,11 +114,25 @@
                           <td> {{ $product->berat }}</td>
                           <td> {{ $product->ukuran }}</td>
                         
-                          <td> {{ $product->gender }}</td>
+                          <td> {{ $product->gender->gender}}</td>
                          
                           <td> {{ $product->stock_barang }}</td>
-                          <td> {{ $product->like }}</td>
+
                           
+                          <td> {{ $product->sukas->count() }}</td>
+
+                          
+                          {{-- @php
+                          $sukas = App\Models\Suka::where('product_id',
+                          $product->id)->get(); 
+                          @endphp
+                          @foreach ($sukas as $suka )
+                          
+                          @if($suka)
+                          <td> {{ $suka->product_id }}</td>
+                          @endif
+                         @endforeach --}}
+
                           <td>
                           <button class="btn btn-danger btn-xs" wire:click.prevent="confirmUserRemoval({{ $product->id }})">Delete</button>
                           <a class="btn btn-primary  btn-xs" href="{{ route('editSepatuProduct', ['id'=>$product->id]) }}">Edit</button>
@@ -125,18 +154,18 @@
                     </tbody>
                   </table>
               </div>
-              
+              <div class="grid-body">
+                {{ $products->links() }}
+              </div>
+              </div>
             </div>
-            <div class="grid-body">
-              {{-- {{ $datas->links() }} --}}
-            </div>
+          
           </div>
             </div>
         </div>
   </div>
-    </div>
-  </div>
+   
   <script>
-    Livewire.emit('delete')
+    // Livewire.emit('delete')
 </script>
   

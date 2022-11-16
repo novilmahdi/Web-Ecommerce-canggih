@@ -114,23 +114,36 @@
               </div>
             </div>
 
-          <div class="form-group row showcase_row_area" >
-            <div class="col-md-3 showcase_text_area">
-            <label for="inputType1">Jenis barang</label>
-            </div>
-            <div class="col-md-9 showcase_content_area">
-            <input type="text" wire:model="jenis_barang" class="form-control" readonly placeholder="jenis_barang">
-            @error('jenis_barang')<span class="text-danger">{{ $message }}</span> @enderror                 
-            </div>
-           </div>
-
-           <div class="form-group row showcase_row_area" >
+           {{-- <div class="form-group row showcase_row_area" >
             <div class="col-md-3 showcase_text_area">
             <label for="inputType1">Gender</label>
             </div>
             <div class="col-md-9 showcase_content_area">
             <input type="text" wire:model="gender" class="form-control" placeholder="Pria/Wanita">
             @error('gender')<span class="text-danger">{{ $message }}</span> @enderror                 
+            </div>
+           </div> --}}
+           
+           <div class="form-group row showcase_row_area" >
+            <div class="col-md-3 showcase_text_area">
+            <label for="inputType1">Gender</label>
+            </div>
+
+            <div class="col-md-9 showcase_content_area">
+              <div class="form-inline">
+                <div class="radio mb-3">
+                  <label class="radio-label mr-4">
+                    <input name="sample" wire:model="gender" type="radio"> Pria <i class="input-frame"></i>
+                  </label>
+                </div>
+                <div class="radio mb-3">
+                  <label class="radio-label">
+                    <input name="sample"  wire:model="genderW" type="radio">Wanita <i class="input-frame"></i>
+                  </label>
+                </div>
+              </div>
+            @error('gender')<span class="text-danger">{{ $message }}</span> @enderror     
+            @error('genderW')<span class="text-danger">{{ $message }}</span> @enderror                 
             </div>
            </div>
 
@@ -155,9 +168,11 @@
             </div>
            </div>
 
-              
+              <br>
                 <div class="form-group row showcase_row_area">
                   <div class="col-md-3 showcase_text_area">
+                   <label for="inputType1"></label>
+
                   </div>
                     <div class="col-md-9 showcase_content_area">
                       <button type="submit"  id="btn-file-reset-id"  class="btn btn-success shdw">Save</button>

@@ -76,8 +76,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- --- --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-     {{-- tailwinds --}}
-
+    
+    {{-- tailwinds --}}
      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     
     @livewireStyles
@@ -127,15 +127,12 @@
                   
                             <div class="hearer_icon d-flex">
                               
-                                @if (Auth::user())
-                                @if (Auth::user()->level == 0)
+                        
     
 
                                   @livewire('navbar')
 
-                                @endif
-       
-                                @endif
+                             
     
                                 <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>                      
                             </div>

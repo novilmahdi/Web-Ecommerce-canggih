@@ -301,12 +301,12 @@
             .sidebar .navigation-menu li .navigation-submenu li .navigation-submenu li a {
               opacity: 0.5; }
       .sidebar .navigation-menu li.active a .link-title {
-        color: #4CCEAC; }
+        color: #0084ff; }
       .sidebar .navigation-menu li.active a .link-icon {
-        color: #4CCEAC; }
+        color: #0084ff; }
     .sidebar .navigation-menu > li:not(.nav-category-divider):hover a:not([aria-expanded="true"]) .link-icon {
       margin-right: 20px;
-      color: #4CCEAC; }
+      color: #0084ff; }
     .sidebar .navigation-menu > li:not(.nav-category-divider) > a[data-toggle="collapse"] {
       position: relative; }
       .sidebar .navigation-menu > li:not(.nav-category-divider) > a[data-toggle="collapse"]:after {

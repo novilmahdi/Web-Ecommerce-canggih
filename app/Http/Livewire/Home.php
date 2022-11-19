@@ -10,11 +10,9 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public $amount = 6;
+    public $amount = 9;
     public $products;   
-
-    // atribut filtering
-    public $search, $min ,$max;
+    public $search, $query;
     protected $queryString = ['search'];
     protected $listeners = ['reloadHome'];
 
@@ -64,6 +62,7 @@ class Home extends Component
     {
         $this->amount +=3;
         return  $this->products = Product::latest()->take($this->amount)->get();
+        
 
     }
     

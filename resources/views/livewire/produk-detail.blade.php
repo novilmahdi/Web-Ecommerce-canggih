@@ -51,11 +51,7 @@
 
             </p>
             <div class="card_area">
-              <div class="product_count d-inline-block">
-                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" min="0" max="10">
-                <span class="number-increment"> <i class="ti-plus"></i></span>
-              </div>
+            
               <div class="add_to_cart">
              
         
@@ -118,90 +114,9 @@
           <p>
            {{ $deskripsi }}
           </p>
-          <p>
-            It is often frustrating to attempt to plan meals that are designed
-            for one. Despite this fact, we are seeing more and more recipe
-            books and Internet websites that are dedicated to the act of
-            cooking for one. Divorce and the death of spouses or grown
-            children leaving for college are all reasons that someone
-            accustomed to cooking for more than one would suddenly need to
-            learn how to adjust all the cooking practices utilized before into
-            a streamlined plan of cooking that is more efficient for one
-            person creating less
-          </p>
+    
         </div>
-        {{-- <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>
-                    <h5>Width</h5>
-                  </td>
-                  <td>
-                    <h5>128mm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Height</h5>
-                  </td>
-                  <td>
-                    <h5>508mm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Depth</h5>
-                  </td>
-                  <td>
-                    <h5>85mm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Weight</h5>
-                  </td>
-                  <td>
-                    <h5>52gm</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Quality checking</h5>
-                  </td>
-                  <td>
-                    <h5>yes</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Freshness Duration</h5>
-                  </td>
-                  <td>
-                    <h5>03days</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>When packeting</h5>
-                  </td>
-                  <td>
-                    <h5>Without touch of hand</h5>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h5>Each Box contains</h5>
-                  </td>
-                  <td>
-                    <h5>60pcs</h5>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div> --}}
+     
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
             <div class="col-lg-6">
@@ -488,91 +403,7 @@
     </div>
   </section>
   <!--================End Product Description Area =================-->
- 
-  <!-- product_list part start-->
-  <section class="product_list best_seller padding_bottom">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <div class="section_tittle text-center">
-            <h2>Best Sellers</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-          <div class="col-lg-3 col-sm-6">
-              <div class="single_category_product">
-                  <div class="single_category_img">
-                   <img src="{{ asset('assets/img/icon/icon_2.png') }}" alt="">
-                      <div class="category_social_icon">
-                          <ul>
-                              <li><a href="#"><i class="ti-heart"></i></a></li>
-                              <li><a href="#"><i class="ti-bag"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="category_product_text">
-                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                          <p>$150.00</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-              <div class="single_category_product">
-                  <div class="single_category_img">
-                   <img src="{{ asset('assets/img/icon/icon_2.png') }}" alt="">
-                      <div class="category_social_icon">
-                          <ul>
-                              <li><a href="#"><i class="ti-heart"></i></a></li>
-                              <li><a href="#"><i class="ti-bag"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="category_product_text">
-                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                          <p>$150.00</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-              <div class="single_category_product">
-                  <div class="single_category_img">
-                   <img src="{{ asset('assets/img/icon/icon_2.png') }}" alt="">
-                      
-                      <div class="category_social_icon">
-                          <ul>
-                              <li><a href="#"><i class="ti-heart"></i></a></li>
-                              <li><a href="#"><i class="ti-bag"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="category_product_text">
-                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                          <p>$150.00</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-3 col-sm-6">
-              <div class="single_category_product">
-                  <div class="single_category_img">
-                   <img src="{{ asset('assets/img/icon/icon_2.png') }}" alt="">
-                      <div class="category_social_icon">
-                          <ul>
-                              <li><a href="#"><i class="ti-heart"></i></a></li>
-                              <li><a href="#"><i class="ti-bag"></i></a></li>
-                          </ul>
-                      </div>
-                      <div class="category_product_text">
-                          <a href="single-product.html"><h5>Long Sleeve TShirt</h5></a>
-                          <p>$150.00</p>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </div>
-  </section>
-  <!-- product_list part end-->
+
  
   <!-- shipping details part end-->
   <section class="shipping_details section_padding border_top">
@@ -580,30 +411,30 @@
           <div class="row">
               <div class="col-lg-3 col-sm-6">
                   <div class="single_shopping_details">
-                      <img src="{{ asset('assets/img/icon/icon_1.png') }}" alt="">
-                      <h4>Free shipping</h4>
-                      <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
-                  </div>
-              </div>
-              <div class="col-lg-3 col-sm-6">
-                  <div class="single_shopping_details">
                       <img src="{{ asset('assets/img/icon/icon_2.png') }}" alt="">
-                      <h4>Free shipping</h4>
-                      <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                      <h4>Checkout</h4>
+                      <p>Lakukan checkout product yang akan dibeli.</p>
                   </div>
               </div>
               <div class="col-lg-3 col-sm-6">
                   <div class="single_shopping_details">
                       <img src="{{ asset('assets/img/icon/icon_3.png') }}" alt="">
-                      <h4>Free shipping</h4>
-                      <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                      <h4>Bayar</h4>
+                      <p>Lakukan pembayaran produk yang di checkout</p>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                  <div class="single_shopping_details">
+                      <img src="{{ asset('assets/img/icon/icon_1.png') }}" alt="">
+                      <h4>Pengiriman</h4>
+                      <p>Produk siap untuk diikirim sesuai alamat anda</p>
                   </div>
               </div>
               <div class="col-lg-3 col-sm-6">
                   <div class="single_shopping_details">
                       <img src="{{ asset('assets/img/icon/icon_4.png') }}" alt="">
-                      <h4>Free shipping</h4>
-                      <p>Divided face for bearing the divide unto seed winged divided light Forth.</p>
+                      <h4>kurir</h4>
+                      <p>Kurir akan menelpon sesuai nomor anda</p>
                   </div>
               </div>
           </div>

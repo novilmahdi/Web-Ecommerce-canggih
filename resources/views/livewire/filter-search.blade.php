@@ -1,15 +1,4 @@
 <div class="product_top_bar d-flex justify-content-between align-items-center" style="float: right;">
-
-
-    <div class="product_bar_single ">
-        {{-- <input  wire:model="query" type="search"  wire:keyup.debounce="filter" style="border:none;" placeholder="Search Here"> --}}
-        <input  wire:model="query" type="search" style="border:none;" placeholder="Search Here">
-        @error('search') <span class="error">{{ $message }}</span> @enderror
-        {{-- <button wire:click="searchItem "> Search</button> --}}
-        <button type="submit"  wire:click="filter"  wire:keyup.debounce="filter"  value="submit" class="genric-btn primary">
-            Search
-        </button>
-    </div>
     
         <div class="product_bar_single">
             <select  wire:model="kategori_id" wire:change="filter" style="padding: 10px; background:#ffffff; border:none;">
@@ -35,5 +24,20 @@
               </select>
               
         </div>
+
+        <div class="product_bar_single">
+            {{-- <input  wire:model="query" type="search"  wire:keyup.debounce="filter" style="border:none;" placeholder="Search Here"> --}}
+            <input  wire:model="query" type="search" style="border:none;" placeholder="Search Here...">
+            @error('search') <span class="error">{{ $message }}</span> @enderror
+            {{-- <button wire:click="searchItem "> Search</button> --}}
+            <button type="submit"  wire:click="filter"  wire:keyup.debounce="filter"  value="submit" class="genric-btn primary">
+                Search
+            </button>
+        </div>
+        {{-- <div class="product_bar_single"> --}}
+            <div wire:loading wire:target="filter">
+                <div class="loader"></div>
+             </div>
+        {{-- </div> --}}
 </div>
 

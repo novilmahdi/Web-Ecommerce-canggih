@@ -52,9 +52,7 @@ Route::middleware('role:admin')->group(function() {
     
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/tambah-sepatu', TambahSepatu::class)->name('tambah-sepatu');
-    Route::get('/tambah-baju', TambahBaju::class)->name('tambah-baju');
     Route::get('/edit-sepatu', EditSepatu::class)->name('editSepatu');
     Route::get('/edit-sepatu-product/{id}', EditSepatuProduct::class)->name('editSepatuProduct');
-    Route::get('/edit-baju', EditBaju::class)->name('edit-baju');
 });
 

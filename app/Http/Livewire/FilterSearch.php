@@ -22,6 +22,8 @@ class FilterSearch extends Component
     public function filter()
     {
         $this->emitTo('home', 'reloadHome', $this->kategori_id, $this->gender_id, $this->query);
+        $this->emitTo('store', 'reloadStore', $this->kategori_id, $this->gender_id, $this->query);
+
     }
 
 }

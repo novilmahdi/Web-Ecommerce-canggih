@@ -2332,7 +2332,7 @@ button.btn.genric-btn.primary.circle.space{
   height: 14px;
   right: -8px;
   top: -8px;
-  content: "5";
+  /* content: "5"; */
   text-align: center;
   line-height: 15px;
   font-size: 10px;
@@ -3472,7 +3472,11 @@ button.btn.genric-btn.primary.circle.space{
 .cat_product_area .btn_2 {
   border: 1px solid #606060;
   color: #606060;
-  margin-top: 80px;
+  /* margin-top: 80px; */
+}
+
+section.cat_product_area.section_padding.border_top.top_more {
+  margin-top: -80px;
 }
 
 /* line 173, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
@@ -3640,9 +3644,10 @@ button.btn.genric-btn.primary.circle.space{
 /* line 314, /Applications/MAMP/htdocs/palash/cl/august 2019/202. Shop/202 shop html/sass/_product.scss */
 .product_top_bar {
   clear: both;
-  display: flex;
+  display: grid;
   padding: 0px 0;
   margin-bottom: 5px;
+  place-items: center;
 }
 
 @media (max-width: 576px) {
@@ -8478,6 +8483,12 @@ video#preview_img {
   height: 275px;
   overflow: hidden;
   margin: -15px;
+  position: relative;
+}
+.card-header-thumbnail-store {
+  height: 275px;
+  overflow: hidden;
+  margin: 5px;
   position: relative;
 }
 

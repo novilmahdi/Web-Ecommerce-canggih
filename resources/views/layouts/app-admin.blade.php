@@ -146,7 +146,7 @@
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                             
                                             
-                                            <a class="dropdown-item" href="/upload-photographer">Profil</a>  
+                                          
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
@@ -203,10 +203,10 @@
               <li>
                 <a href="/tambah-sepatu">Sepatu</a>
               </li>
-              <li>
-                <a href="/tambah-baju">Baju</a>
+              {{-- <li>
+                <a href="#">Baju</a>
                
-              </li>
+              </li> --}}
             </ul>
           </li>
           <li>
@@ -219,15 +219,16 @@
               <li>
                 <a href="/edit-sepatu">Sepatu</a>
               </li>
-              <li>
-                <a href="/edit-baju">Baju</a>
-              </li>
+              {{-- <li>
+                <a href="#">Baju</a>
+              </li> --}}
             </ul>
           </li>
         </ul>
         
       </div>
       <!-- partial -->
+      
       @yield('content')
      
       <!-- page content ends -->

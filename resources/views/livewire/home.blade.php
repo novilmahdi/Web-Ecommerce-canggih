@@ -14,10 +14,11 @@
                     <div class="single_banner_slider">
                         <div class="banner_text">
                             <div class="banner_text_iner">
-                                <h1>Fashion Collection 2019</h1>
+                                <h1>NVL 2022</h1>
                                 @guest
                                 @if (Route::has('login'))
-                                <h5>Apakah Anda Memiliki Produk ? </h5>
+                                <h5>Apakah anda memilki akun untuk pembelian ? </h5>
+                                <br>
                                 <a href="/register" class="btn_1">Daftar sekarang</a>
                                 @endif
                             @else
@@ -37,7 +38,7 @@
 <section class="new_arrival section_padding">
 <section class="new_arrival section_padding">
     <div class="col-lg-12 mb-4">
-    <div class="product_top_bar d-flex justify-content-between align-items-center" style="float: right;">
+    <div class="product_top_bar">
         <div class="single_product_menu product_bar_item">
         </div>
         {{-- <div class="product_bar_single ">
@@ -82,8 +83,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="row">
+                   
+                        
+                 
 
-                    @foreach ($products as $product )
+                    @forelse ($products as $product )
                     <div class="col-lg-4 col-sm-6">
                         <div class="single_category_product">
                     
@@ -108,19 +112,29 @@
                             </div>
                         </div>
                     </div>
-                     @endforeach
+                    @empty
+                     
+                        <div class="col-lg-12 text-center">
+                             Pencarian kosong
+                        </div>
+                      @endforelse
                 </div>
             </div>
         </div>
     </div>
 
+
     <div class="flex items-center justify-center mt-10">
         <div wire:loading style="border-top-color: transparent;"
         class="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin">
         </div>
-
     </div>
-    <section class="cat_product_area section_padding border_top">
+
+
+    <br>
+    <br>
+    
+    <section class="cat_product_area section_padding border_top top_more">
         <div class="col-lg-12 text-center">
               <a href="" wire:click="loadProduct" class="btn_2" onclick="return false;">More Items</a>
         </div>

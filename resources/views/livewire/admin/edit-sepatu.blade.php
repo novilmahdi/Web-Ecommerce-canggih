@@ -58,15 +58,19 @@
                     <div class="col-md-3 input-group" style="float: right;">
                       <div class="borderForm">
 
-                        <input type="text" wire:model="search"  id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
-                        <button class="btn btn-primary Rsearch" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
+                        <input type="text" wire:model.debounce.1000ms="search"  id="inlineFormInputGroup" placeholder="Search" autocomplete="off">
+                        <button class="btn btn-primary Rsearch" type="submit" wire:loading.class.remove="bg-blue" ><i class="mdi mdi-arrow-right-thick"></i> </button>
+                        
                       </div>
                     </div>
                   </form>
+                  
+              
+              
 
                
-                <div class="item-wrapper">
-                  <table class="table table-hover">
+                <div class="item-wrapper" >
+                  <table class="table table-hover" wire:loading.remove>
                     <thead>
                       <tr>
                         <th>Image Preview</th>
@@ -149,20 +153,34 @@
                       <tr>
                         <td colspan="12" style="text-align: center;">Data Kosong</td>
                     </tr>
+           
                       @endif
                     
                     </tbody>
                   </table>
+
+                  {{-- Loading --}}
+                  <br>
+                  <div class="flex items-center justify-center mt-10">
+                    <div wire:loading style="border-top-color: transparent;"
+                    class="w-16 h-16 border-4 border-blue-400 border-solid rounded-full animate-spin">
+                    </div>
+                </div>
+                {{-- End Loading --}}
+                  
               </div>
+         
               <div class="grid-body">
                 {{ $products->links() }}
               </div>
               </div>
+
             </div>
           
           </div>
             </div>
         </div>
+     
   </div>
    
   <script>

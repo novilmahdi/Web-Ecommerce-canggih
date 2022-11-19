@@ -10,7 +10,13 @@
     <a class="dropdown-toggle"  href="{{ url('belanjauser') }}" id="navbarDropdown3" role="button"
             aria-haspopup="true" aria-expanded="false">
         <i class="ti-bag"></i>
+        @if (Auth::user())
+        @if (Auth::user()-> level == 0)
+            
         {{ $jumlah }}                       
+        @endif
+            
+        @endif
     </a>
 </div>
 

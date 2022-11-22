@@ -9,10 +9,10 @@
             <div class="col-lg-6 col-md-6">
                 <div class="login_part_text text-center">
                     <div class="login_part_text_iner">
-                        <h2>Anda Punya Vendor?</h2>
-                        <p>Silahkan daftar untuk menjadi member dan 
-                            upload Vendor anda agar dikenal banyak orang </p>
-                        <a href="{{ url('/register') }}" class="btn_3">Daftar Member</a>
+                        <h2>Anda ingin belanja sekarang?</h2>
+                        <p>Silahkan lakukan pendaftaran akun
+                           agar bisa melakukan pembelian </p>
+                        <a href="{{ url('/register') }}" class="btn_3">Daftar akun</a>
                     </div>
                 </div>
             </div>

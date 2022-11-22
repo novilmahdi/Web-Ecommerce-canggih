@@ -10,9 +10,8 @@
             <div class="col-lg-6 col-md-6">
                 <div class="login_part_text text-center">
                     <div class="login_part_text_iner">
-                        <h2>Anda Member?</h2>
-                        <p>Ayo akses fitur untuk upload vendor anda
-                           agar dikenal banyak orang dengan cara masuk sekarang</p>
+                        <h2>Login segera</h2>
+                        <p>Temukanlah bebebagai macam Fashion pada website ecommece ini</p>
                         <a href="{{ url('/login') }}" class="btn_3">Masuk Sekarang</a>
                     </div>
                 </div>

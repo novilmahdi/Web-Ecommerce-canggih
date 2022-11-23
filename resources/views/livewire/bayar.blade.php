@@ -5,11 +5,77 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             @if($belanja->status == 1)
+            {{-- @foreach ($belanjaCheck as $b_check) --}}
+                
                 <div class="row">
                     <div class="col-md-12">
-                        <button id="pay-button" type="button" class="btn btn-primary center-block">pay!</button>
+                        {{-- <div class="col-lg-4"> --}}
+                            <div class="order_box">
+                              <h2>Your Order</h2>
+                              <ul class="list">
+                                <li>
+                                  <a href="#">Product
+                                    <span>Total</span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">{{ $produk->nama_barang}}
+                                    {{-- <span class="middle">x 02</span> --}}
+                                    <span class="last">Rp. {{ number_format($total_harga) }}</span>
+                                  </a>
+                                </li>
+                                {{-- <li>
+                                  <a href="#">Fresh Tomatoes
+                                    <span class="middle">x 02</span>
+                                    <span class="last">$720.00</span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">Fresh Brocoli
+                                    <span class="middle">x 02</span>
+                                    <span class="last">$720.00</span>
+                                  </a>
+                                </li> --}}
+                              </ul>
+                              <ul class="list list_2">
+                                {{-- <li>
+                                  <a href="#">Subtotal
+                                    <span>$2160.00</span>
+                                  </a>
+                                </li>
+                                <li>
+                                  <a href="#">Shipping
+                                    <span>Flat rate: $50.00</span>
+                                  </a>
+                                </li> --}}
+                                <li>
+                                  <a href="#">Total
+                                    <span>Rp. {{ number_format($total_harga) }}</span>
+                                  </a>
+                                </li>
+                              </ul>
+                              <div class="payment_item">
+                                  <div style="text-align: center">
+
+                                    <label for="f-option5">Peringatan!</label>
+                                  </div>
+                               
+                                <p>
+                                    Mohon di check kembli pesanan anda sebelum membayar!
+                                </p>
+                              </div>
+                    
+                              <br><div style="display: flex; align-items: center; justify-content: center;">
+
+                                <button id="pay-button" type="button" class="btn_3" >BAYAR!</button>
+                              </div>
+
+                            </div>
+                          {{-- </div> --}}
                     </div>
                 </div>
+            {{-- @endforeach --}}
+
                 @elseif ($belanja->status == 2)
                 <div class="card">
                     <div class="col-md-12">
@@ -48,6 +114,7 @@
 
                         </div>
                     </div>
+                    
                 </div>
             @endif
         </div>

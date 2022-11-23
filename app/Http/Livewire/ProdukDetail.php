@@ -34,7 +34,7 @@ class ProdukDetail extends Component
       $this->harga = $data->harga;
       $this->berat = $data->berat;
       $this->ukuran = $data->ukuran;
-      $this->gender = $data->gender;
+      $this->gender = $data->gender; // "gender" diambil dari Model Product belongsTo 
       $this->deskripsi = $data->deskripsi;
       
      
@@ -69,7 +69,7 @@ class ProdukDetail extends Component
             [
                 'user_id' => Auth::user()->id,
                 'total_harga' => $produk->harga,
-                'produk_id' => $produk->id,
+                'product_id' => $produk->id,
                 'status' => 0                   // Angka 0 = Belum melakukan ongkos kirim & dibayar
             ]
             );

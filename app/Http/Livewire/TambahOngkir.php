@@ -60,7 +60,7 @@ class TambahOngkir extends Component
         }
 
         // Mengambil data produk
-        $produk =  Product::find($this->belanja->produk_id);
+        $produk =  Product::find($this->belanja->product_id);
 
         // Mengambil biaya ongkir
         $rajaOngkir = new RajaOngkir($this->apiKey);

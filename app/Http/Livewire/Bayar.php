@@ -13,14 +13,18 @@ class Bayar extends Component
     public $snapToken;
     public $belanja;
     public $va_number,$gross_amount, $bank, $transaction_status,$deadline;
+    public $belanjaCheck = [];
 
 
     public function mount($id)
     {
+ 
+     
         if(!Auth::user())
         {
             return redirect()->route('login');
         }
+     
 
          // Set your Merchant Server Key
          \Midtrans\Config::$serverKey = 'SB-Mid-server-Biol52AaY-zQNFe0z6RCehWR';
@@ -53,6 +57,11 @@ class Bayar extends Component
           {
             if($this->belanja->status == 1)
             {
+                $belanjaCheck = Belanja::where('id', $id)->first();
+                $this->produk = $belanjaCheck->product;  // "product" diambil dari Model Belanja belongsTo 
+                $this->total_harga = $belanjaCheck->total_harga;
+
+
                 $params = array(
                     'transaction_details' => array(
                         'order_id' => $this->belanja->id,
@@ -83,11 +92,20 @@ class Bayar extends Component
              }
           
           }
+
+        //   if(Auth::user())
+        //   {
+        //       $belanjaCheck = Belanja::where('id', $id)->first();
+        //       $this->produk = $belanjaCheck->product;  // "product" diambil dari Model Belanja belongsTo 
+        //       $this->total_harga = $belanjaCheck->total_harga;
+        //   }
+  
     }   
 
 
     public function render()
     {
+     
         return view('livewire.bayar')->extends('layouts.app')->section('content');
     }
 }

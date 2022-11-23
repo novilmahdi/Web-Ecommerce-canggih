@@ -23,20 +23,20 @@
                             <td>{{ $no++ }}</td>
                             <td>{{  $pesanan->created_at  }}</td>
                             <td>
-                                <?php $produk = \App\Models\Product::where('id',  $pesanan->produk_id)->first(); ?>
+                                <?php $produk = \App\Models\Product::where('id',  $pesanan->product_id)->first(); ?>
                                 <img src="{{ asset('uploads/'.$produk->image_p) }}" width="30px" alt="">
                                 
                             </td>
                             <td>{{  $produk->nama_barang }}</td>
                             <td>
                                 @if ($pesanan->status == 0)
-                                <strong>pesanan belum ditambahkan ongkir</strong>
+                                <span class="label-tags" style="background:#ff2525"> <strong>pesanan belum ditambahkan ongkir</strong></span>
                                 @endif
                                 @if ($pesanan->status == 1)
-                                <strong>pesanan sudah ditambahkan ongkir</strong>
+                                <span class="label-tags" style="background:#0fb0fa"> <strong>Menunggu pembayaran</strong></span>
                                 @endif
                                 @if ($pesanan->status == 2)
-                                <strong>pesanan telah ditambahkan ongkir</strong>
+                                <span class="label-tags" style="background:#00a703"> <strong>pesanan telah ditambahkan ongkir</strong></span>
                                 @endif
                             </td>
                             <td><strong>Rp. {{ number_format($pesanan->total_harga) }}</strong></td>

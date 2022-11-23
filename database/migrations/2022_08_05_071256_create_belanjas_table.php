@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('belanjas', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('produk_id');
+            // $table->integer('produk_id');
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products');
             $table->integer('total_harga');
             $table->integer('status');
             $table->timestamps();

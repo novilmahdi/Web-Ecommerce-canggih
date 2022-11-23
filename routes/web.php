@@ -44,7 +44,11 @@ Route::get('/contact', Kontak::class);
 
 Route::get('/produk-details/{id}', ProdukDetail::class)->name('produk-details');
 Route::get('/TambahOngkir/{id}', TambahOngkir::class);
-Route::get('/Bayar/{id}', Bayar::class);
+// Route::get('/Bayar/{id}', Bayar::class);
+
+Route::middleware('role:user')->group(function() {
+    Route::get('/Bayar/{id}', Bayar::class);
+});
 
 
 // Route Admin

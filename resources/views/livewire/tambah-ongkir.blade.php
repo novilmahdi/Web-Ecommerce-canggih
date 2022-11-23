@@ -40,14 +40,24 @@
                      
                         <br><br>
                         <div class="cold-md-6">
-                            <button type="submit" class="btn btn-success btn-block">Lihat Daftar Ongkir</button>
+                            <button type="submit" class="btn btn-success btn-block btn_3">Lihat Daftar Ongkir</button>
                         </div>
                         
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>
+
+    
+    <div style="text-align: center">
+        
+        <br><br><div wire:loading wire:target='getOngkir'>
+                 Sedang mencari ekspedisi...
+        </div>
+    </div>
+
 
         @if ($result)
             <section class="products mb-5">
@@ -64,8 +74,8 @@
                                             <h5><strong>{{ $r['description'] }}</strong></h5>
                                         </div>
                                     </div>
-                                    <div class="row mr-2">
-                                        <button class="btn btn-success btn-block" wire:click="save_ongkir({{ $r['biaya'] }})">
+                                    <div class="row mt-2"  style="display: flex; align-items: center; justify-content: center;">
+                                        <button class="btn btn-success btn-block btn_3" wire:click="save_ongkir({{ $r['biaya'] }})">
                                                 Tambah Sebagai Ongkir
                                         </button>
                                     </div>

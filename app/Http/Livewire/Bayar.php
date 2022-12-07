@@ -11,7 +11,7 @@ class Bayar extends Component
 {
 
     public $snapToken;
-    public $belanja;
+    public $belanja,$belanja2;
     public $va_number,$gross_amount, $bank, $transaction_status,$deadline;
     public $belanjaCheck = [];
 
@@ -51,12 +51,17 @@ class Bayar extends Component
         {
             //Ambil data belanja
             $this->belanja = Belanja::find($id);
+            $this->belanja2 = Belanja::where('id', $id)->where('user_id', Auth::user()->id)->first();
+
         }
 
           if(!empty($this->belanja))
           {
             if($this->belanja->status == 1)
             {
+                if($this->belanja2)
+                {
+
                 $belanjaCheck = Belanja::where('id', $id)->first();
                 $this->produk = $belanjaCheck->product;  // "product" diambil dari Model Belanja belongsTo 
                 $this->total_harga = $belanjaCheck->total_harga;
@@ -75,9 +80,19 @@ class Bayar extends Component
                     ),
                 );
                 $this->snapToken = \Midtrans\Snap::getSnapToken($params);
+             }
+             else
+             {
+                return redirect()->route('belanja-user');
+             }
             }
+
             else if($this->belanja->status == 2)
             {
+                if($this->belanja2)
+                {
+
+                
                 $status = \Midtrans\Transaction::status($this->belanja->id);   
                 $status =json_decode(json_encode($status),true);
 
@@ -90,16 +105,13 @@ class Bayar extends Component
                 $this->deadline             = date('Y-m-d H:i:s', strtotime('+1 day', strtotime($transaction_time)));
                 
              }
-          
+             else
+             {
+                 return redirect()->route('belanja-user');
+             }
+            }
           }
 
-        //   if(Auth::user())
-        //   {
-        //       $belanjaCheck = Belanja::where('id', $id)->first();
-        //       $this->produk = $belanjaCheck->product;  // "product" diambil dari Model Belanja belongsTo 
-        //       $this->total_harga = $belanjaCheck->total_harga;
-        //   }
-  
     }   
 
 

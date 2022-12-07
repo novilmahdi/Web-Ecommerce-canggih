@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\EditBaju;
@@ -35,10 +36,14 @@ use Spatie\Permission\Contracts\Role;
 
 Auth::routes();
 
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+
+
 Route::get('/', Home::class)->name('home');
 Route::get('/tambahproduk', TambahProduk::class);
 Route::get('/store', Store::class)->name('store');
-Route::get('/belanjauser', BelanjaUser::class);
+Route::get('/belanjauser', BelanjaUser::class)->name('belanja-user');
 Route::get('/contact', Kontak::class);
 
 

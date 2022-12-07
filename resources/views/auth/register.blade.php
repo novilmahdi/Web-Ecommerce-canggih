@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="size-google">
-                                <a href="{{ url('/auth/google') }}">
+                                <a href="{{ route('google.login') }}">
                                     <img src="{{ asset('assets/img/icon/google.png') }}" alt="">
                                 </a>
                                 </div>

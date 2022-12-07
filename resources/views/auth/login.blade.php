@@ -43,12 +43,12 @@
 
                             </div>
                             <div class="col-md-12 form-group">
-                                <div class="creat_account d-flex align-items-center">
+                                {{-- <div class="creat_account d-flex align-items-center">
                                     <input type="checkbox" id="f-option" name="selector">
                                     <label class="form-check-label" for="remember">
                                         {{ __('Ingat Saya') }}
                                     </label>
-                                </div>
+                                </div> --}}
                                 <button type="submit" value="submit" class="btn_3">
                                     {{ __('Masuk') }}
                                 </button>
@@ -65,7 +65,7 @@
                                     </div>
 
                                     <div class="size-google">
-                                    <a href="{{ url('/auth/google') }}">
+                                    <a href="{{ route('google.login') }}">
                                         <img src="{{ asset('assets/img/icon/google.png') }}" alt="">
                                     </a>
                                     </div>

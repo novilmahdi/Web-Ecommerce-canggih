@@ -51,7 +51,7 @@
 
               
 
-              <p class="grid-header">Image&amp;Components Table</p>
+              <p class="grid-header">Data product sepatu</p>
               
               <div class="table-responsive">
                   <form action="#" class="t-header-search-box">

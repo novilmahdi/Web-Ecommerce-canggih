@@ -53,7 +53,7 @@
                   <div class="media contact-info">
                     <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                     <div class="media-body">
-                      <h3>+62 823 6069 0352</h3>
+                      <h3>+62 823 3359 0556</h3>
                       <p>Telp, Home</p>
                     </div>
                   </div>

@@ -7,7 +7,7 @@
  <div class="product_image_area section_padding">
     <div class="container">
       <div class="row s_product_inner">
-        <div class="col-lg-5">
+        <div class="col-lg-5" wire:ignore>
           <div class="product_slider_img">
             <div class="lSSlideOuter"><div class="lSSlideWrapper usingCss" style="transition-duration: 600ms; transition-timing-function: ease;">
              <div id="vertical" class="lightSlider lsGrab lSSlide" style="width: 1832px; height: 559px; padding-bottom: 0%; transform: translate3d(0px, 0px, 0px);">

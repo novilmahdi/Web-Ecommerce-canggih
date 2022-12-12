@@ -3,7 +3,7 @@
   <div class="page-content-wrapper-inner">
     <div class="col-lg-12">
       <div class="grid">
-        <p class="grid-header">Upload Laravel</p>
+        <p class="grid-header">Unggah product Sepatu</p>
         <div class="grid-body">
           <div class="item-wrapper">
             <div class="row mb-3">

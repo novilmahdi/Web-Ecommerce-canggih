@@ -1,3 +1,22 @@
+<p align="center">Page DASHBOARD</p>
+
+![Dashboard](https://user-images.githubusercontent.com/93973382/208573151-febf6e40-040b-469f-948c-d1e3bc06aa43.png)
+
+
+<p align="center">Page Upload Product</p>
+
+![Dashboard (1)](https://user-images.githubusercontent.com/93973382/206211485-3f51d530-873f-4a5f-b197-c7b7d68ea90e.png)
+
+<p align="center">Page List Product Edit</p>
+
+![Dashboard (2)](https://user-images.githubusercontent.com/93973382/206211698-3659649e-50d0-4d5f-99dd-f1b76ace11f0.png)
+
+<p align="center">Page Update Product</p>
+
+![Dashboard (3)](https://user-images.githubusercontent.com/93973382/206211855-71cc7a89-2f69-4da0-a1f6-4822e9ecc711.png)
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

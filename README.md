@@ -1,3 +1,57 @@
+<p align="center">Tech Stack</p>
+
+
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/93973382/206341704-e995295b-a0e8-4a0c-a854-114c099d3950.png" width="50" /)
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=php,laravel,html,css,tailwind,bootstrap,mysql,jquery&theme=light" />
+   
+
+  </a>
+</p>
+
+<p align="center">Page HOME</p>
+
+![Laravel](https://user-images.githubusercontent.com/93973382/206199032-b3a98c9a-d9ff-499e-ae93-8c86e0c9e8bf.jpg)
+
+<p align="center">Page Detail Product</p>
+
+![Laravel2](https://user-images.githubusercontent.com/93973382/206200484-be046e7a-e091-42ee-85e8-d847ca2ca146.png)
+
+<p align="center">Page Store</p>
+
+![Laravel3](https://user-images.githubusercontent.com/93973382/206201074-751365e2-27ce-42fe-bd14-5f18632fc17b.png)
+
+<p align="center">Page Contact</p>
+
+![Laravel4](https://user-images.githubusercontent.com/93973382/206201911-6352631f-d1bc-414b-9c26-d77b88b4366e.png)
+
+<p align="center">Page List Cart</p>
+
+![Laravel5](https://user-images.githubusercontent.com/93973382/206206252-049c5ec0-9cbb-4824-8dd1-3c23723b57f6.png)
+
+<p align="center">Page Tujuan Pengiriman</p>
+
+![Laravel8](https://user-images.githubusercontent.com/93973382/206206454-626ecf37-3404-4648-b9b5-1ebc68ef34f2.png)
+
+<p align="center">Page Struk Pembayaran</p>
+
+![Laravel9](https://user-images.githubusercontent.com/93973382/206206749-c1a659e5-5249-4259-946d-177b5d29fbed.png)
+
+<p align="center">Page Payment Gateway </p>
+
+![Laravel10](https://user-images.githubusercontent.com/93973382/206207087-0cde228b-8ad7-4a45-8719-10c30d5fc75d.png)
+
+<p align="center">Page  Struk sebelum Melakukan Pembayaran "Pending" </p>
+
+![Laravel12](https://user-images.githubusercontent.com/93973382/206208157-b2379199-1aa9-4147-bddd-6825356b5375.png)
+
+<p align="center">Page  Struk Sesudah Melakukan Pembayaran "Settlement"</p>
+
+![Laravel6](https://user-images.githubusercontent.com/93973382/206208483-5af1aeea-2c5e-4b32-b01a-3a206d94cd56.png)
+
+
+
 <p align="center">Page DASHBOARD</p>
 
 ![Dashboard](https://user-images.githubusercontent.com/93973382/208573151-febf6e40-040b-469f-948c-d1e3bc06aa43.png)

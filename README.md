@@ -1,14 +1,40 @@
 <p align="center">Tech Stack</p>
 
-
 <p align="center">
  <img src="https://user-images.githubusercontent.com/93973382/206341704-e995295b-a0e8-4a0c-a854-114c099d3950.png" width="50" /)
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=php,laravel,html,css,tailwind,bootstrap,mysql,jquery&theme=light" />
-   
-
   </a>
 </p>
+
+Pembuatan  Website Ecommerce ini menggunakan stack LARAVEL dan pendukung sebagai berikut :
+
+- Laravel Spatie            : Sebagai membuat Role admin dan user
+- Raja Ongkir               : Menggunakan API Raja Ongkir untuk menentukan Ekspedisi dan harga kirim antar kota
+- Mysql                        : Menyimpan data
+- Midtrans                   : Sebagai sistem pembayaran pada website ini
+
+Fitur Admin : 
+-  Upload product
+-  Edit product
+-  Delete product
+-  Monitoring pembayaran
+-  Read Contact 
+-  Dll
+
+Fitur User :
+-  Keranjang 
+-  Checkout product
+-  List product
+-  Delete List product
+-  Tagihan product
+-  Like product
+-  Expedisi pengirimin seluruh Indonesia
+-  Contact admin
+
+Tampilan bisa dilihat dari gambar dibawah ini berupa hasil Screenshot.
+
+
 
 <p align="center">Page HOME</p>
 

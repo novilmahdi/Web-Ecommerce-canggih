@@ -13,8 +13,8 @@ Pembuatan  Website Ecommerce ini menggunakan stack LARAVEL dan pendukung sebagai
 - Raja Ongkir               : Menggunakan API Raja Ongkir untuk menentukan Ekspedisi dan harga kirim antar kota
 - Mysql                     : Menyimpan data
 - Midtrans                  : Sebagai sistem pembayaran pada website ini
-- Login Google              : Bisa login akun menggunakan Google
-- Login Facebook            : Bisa login akun menggunakan Facebook
+- Login Google              : Bisa login menggunakan akun Google
+- Login Facebook            : Bisa login menggunakan akun Facebook
 
 Fitur Admin : 
 -  Upload product

@@ -11,8 +11,10 @@ Pembuatan  Website Ecommerce ini menggunakan stack LARAVEL dan pendukung sebagai
 
 - Laravel Spatie            : Sebagai membuat Role admin dan user
 - Raja Ongkir               : Menggunakan API Raja Ongkir untuk menentukan Ekspedisi dan harga kirim antar kota
-- Mysql                        : Menyimpan data
-- Midtrans                   : Sebagai sistem pembayaran pada website ini
+- Mysql                     : Menyimpan data
+- Midtrans                  : Sebagai sistem pembayaran pada website ini
+- Login Google              : Bisa login akun menggunakan Google
+- Login Facebook            : Bisa login akun menggunakan Facebook
 
 Fitur Admin : 
 -  Upload product
